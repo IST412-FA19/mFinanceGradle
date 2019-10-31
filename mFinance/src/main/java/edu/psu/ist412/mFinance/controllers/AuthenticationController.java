@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class AuthenticationController {
-    @PostMapping("/login")
+    @PostMapping("/authenticate")
     public ResponseEntity<String> login(@RequestBody User user) {
         if (user.getUserName().equals("test") && user.getUserPass().equals("password")) {
             return new ResponseEntity<>("Authorized!", HttpStatus.OK);
