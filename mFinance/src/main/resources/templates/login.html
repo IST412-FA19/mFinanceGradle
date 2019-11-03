@@ -19,7 +19,7 @@ and open the template in the editor.
             <div><input type="submit" value="Sign In"/></div>
         </form>
 
-        <div><input type="button" onClick="location.href='/register'"/></div>
+        <div><input th:action="@{/register}" type="button" value="Register"/></div>
 
     </body>
 </html>
