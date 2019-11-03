@@ -8,6 +8,7 @@ package edu.psu.ist412.mFinance.dao;
 import edu.psu.ist412.mFinance.models.ApplicationUser;
 import edu.psu.ist412.mFinance.models.ApplicationUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,23 +18,15 @@ import org.springframework.stereotype.Service;
  *
  * @author garre
  */
-@Service("applicationUserDetailsService")
+@Service
 public class ApplicationUserDetailsService implements UserDetailsService {
-    
     @Autowired
-    private AuthenticationRepository repository;
-    
+    private ApplicationUserService userService;
+    @Autowired
+    private Converter<ApplicationUser, ApplicationUserDetails> userDetailsConverter;
+
     @Override
     public UserDetails loadUserByUsername(String string) throws UsernameNotFoundException {
-        ApplicationUser user = repository.findByUsername(string);
-        
-        System.err.println("User: " + string + " attempted access!");
-        
-        if (user == null) {
-            throw new UsernameNotFoundException("User does not exist.");
-        }
-        
-        return new ApplicationUserDetails(user);
+        return userDetailsConverter.convert(userService.findByUsername(string));
     }
-    
 }

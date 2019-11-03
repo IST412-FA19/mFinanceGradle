@@ -5,10 +5,9 @@
  */
 package edu.psu.ist412.mFinance.models;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
@@ -16,25 +15,32 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @author garre
  */
 public class ApplicationUserDetails implements UserDetails {
-    private ApplicationUser user;
     
-    public ApplicationUserDetails(ApplicationUser user) {
-        this.user = user;
+    private String username;
+    private String password;
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return user.getAuthorities().stream().map((authority) -> new SimpleGrantedAuthority(authority.getName().toString())).collect(Collectors.toList());
+        return new ArrayList<>();
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return this.password;
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return this.username;
     }
 
     @Override
@@ -56,4 +62,5 @@ public class ApplicationUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+    
 }

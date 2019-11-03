@@ -4,12 +4,8 @@
 
 -- Author:  garre
 -- Created: Nov 3, 2019
-INSERT INTO `authorities`(`name`, `id`) VALUES ('ADMIN', 1);
-INSERT INTO `authorities`(`name`, `id`) VALUES ('USER', 2);
 
-INSERT INTO `users`(`id`, `username`, `password`) VALUES (1, 'admin', 'password');
-
-INSERT INTO `role_assignments`(`user_id`, `authority_id`) VALUES (1, 1);
+INSERT INTO `Application_User`(`id`, `username`, `password`) VALUES (1, 'admin', 'password');
 
 
 

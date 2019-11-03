@@ -7,11 +7,13 @@ package edu.psu.ist412.mFinance.dao;
 
 import edu.psu.ist412.mFinance.models.ApplicationUser;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author garre
  */
-public interface UserRepository extends CrudRepository<ApplicationUser, Integer> {
-    ApplicationUser findByUsername(String username);
+@Repository
+public interface ApplicationUserRepository extends CrudRepository<ApplicationUser, Integer> {
+    public ApplicationUser findByUsername(String username);
 }
