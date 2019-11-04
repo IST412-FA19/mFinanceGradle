@@ -7,11 +7,15 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
     <head>
         <title>Register for a mFinance Account</title>
-        <meta http-equiv="Content-Type" content="text/html; charset-UTF-8" />
         </head>
     <body>
         <div>
-            <p>This is for new accounts</p>
+            <h1>Create an account</h1>
         </div>
+        <form th:action="@{/users}" method="post">
+            <div><label> User Name : <input type="text" name="username"/> </label></div>
+            <div><label> Password: <input type="password" name="password"/> </label></div>
+            <div><input type="submit" value="Create Account"/></div>
+        </form>
     </body>
 </html>

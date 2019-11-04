@@ -53,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/", "/console/**").permitAll()
+                .antMatchers("/", "/register", "/users", "/console/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -62,7 +62,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .logout()
                 .permitAll();
         
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
+        http.csrf().ignoringAntMatchers("/console/**");
+        http.headers().frameOptions().sameOrigin();
     }
 }

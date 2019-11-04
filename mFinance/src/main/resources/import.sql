@@ -5,7 +5,7 @@
 -- Author:  garre
 -- Created: Nov 3, 2019
 
-INSERT INTO `Application_User`(`id`, `username`, `password`) VALUES (1, 'admin', 'password');
+INSERT INTO `Application_User`(`id`, `username`, `password`) VALUES (0, 'admin', 'password');
 
 
 
