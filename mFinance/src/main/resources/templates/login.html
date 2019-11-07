@@ -8,18 +8,50 @@ and open the template in the editor.
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
         <title>Login</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     </head>
     <body>
+        <div class="container-width">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a class="navbar-brand" th:href="@{/}">mFinance Logo</a>
+
+            <ul class="nav navbar-nav navbar-dark">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Loan Offerings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Customer Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">About mFinance</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Contact Us</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto navbar-dark">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/register}">Create Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/login}">Log In</a>
+                </li>
+            </ul>
+        </nav>
         <div th:if="${param.error}">
-            <em>Hint: Try "test" and "password" as your credentials</em>
+            <em>Hint: Try "admin" and "password" as your credentials</em>
+        </div>
+        <div>
+            <h1>Enter Credentials</h1>
         </div>
         <form th:action="@{/login}" method="post">
             <div><label> User Name : <input type="text" name="username"/> </label></div>
             <div><label> Password: <input type="password" name="password"/> </label></div>
             <div><input type="submit" value="Sign In"/></div>
         </form>
-
-        <div><input th:action="@{/register}" type="button" value="Register"/></div>
-
+        <div><a th:href="@{/register}"/>Register for an account</div>
+        </div>
     </body>
 </html>

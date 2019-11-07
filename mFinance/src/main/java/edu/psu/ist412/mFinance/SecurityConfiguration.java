@@ -5,19 +5,18 @@
  */
 package edu.psu.ist412.mFinance;
 
-import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 /**
  * Site security configuration.
@@ -27,37 +26,43 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+    @Autowired
+    private AuthenticationProvider authenticationProvider;
+    
+    @Autowired
+    public void configureAuthManager(AuthenticationManagerBuilder authenticationManagerBuilder) {
+        authenticationManagerBuilder.authenticationProvider(authenticationProvider);
+    }
+    
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
+    }
+    
+    @Bean
+    public DaoAuthenticationProvider daoAuthenticationProvider(PasswordEncoder passwordEncoder, UserDetailsService userDetailsService) {
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
+        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+        
+        return daoAuthenticationProvider;
+    }
+    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/", "/authenticate").permitAll()
+                .antMatchers("/", "/register", "/users", "/console/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
-                .loginPage("/login")
-                .permitAll()
+                .loginPage("/login").permitAll()
                 .and()
             .logout()
                 .permitAll();
-    }
-    
-    @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("USER");
-        ArrayList<SimpleGrantedAuthority> authorities = new ArrayList<>();
         
-        authorities.add(authority);
-        
-        UserDetails user = new User("test", "password", true, true, true, true, authorities);
-        
-        return new InMemoryUserDetailsManager(user);
-    }
-    
-    @Bean
-    @SuppressWarnings("deprecation")
-    public static PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+        http.csrf().ignoringAntMatchers("/console/**");
+        http.headers().frameOptions().sameOrigin();
     }
 }
