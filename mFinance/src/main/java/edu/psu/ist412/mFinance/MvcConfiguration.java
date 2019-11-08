@@ -6,6 +6,8 @@
 package edu.psu.ist412.mFinance;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author garre
  */
 @Configuration
+@EnableWebMvc
 public class MvcConfiguration implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -23,4 +26,10 @@ public class MvcConfiguration implements WebMvcConfigurer {
         registry.addViewController("/home").setViewName("home");
         registry.addViewController("/register").setViewName("register");
     }
+    @Override
+        public void addResourceHandlers(ResourceHandlerRegistry registry){
+            
+            registry.addResourceHandler("/images/**").addResourceLocations("classpath:/resources/images/");
+            
+        }
 }
