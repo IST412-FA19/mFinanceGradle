@@ -16,18 +16,26 @@ and open the template in the editor.
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <style>
             .jumbotron {
-                padding: 100px 25px;
+                background-image: url("/images/headerlogo.jpg");
+                  height:300px;
+                  background-repeat: no-repeat;
+                  background-position: center;
+                  background-size: auto 100%;
+                  background-color: black;
+                  padding: 0;
             }
             .container-fluid {
                 padding: 60px 50px;
+            }
+            .navbar {
+                padding: 0;
             }
         </style>
     </head>
     <body>
         <div class="container-width">
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-                <!-- in image I've tried src, href, th:src, and th:href-->
-                <a class="navbar-brand" th:href="@{/}"><img th:src="@{/images/headerlogo.jpg}" alt="WTF Logo"/></a>
+
 
         <ul class="nav navbar-nav navbar-dark">
             <li class="nav-item">
@@ -57,11 +65,14 @@ and open the template in the editor.
         </nav>
     </div>
         <div class="jumbotron text-center">
+                            <!-- in image I've tried src, href, th:src, and th:href-->
+                <!--<a class="navbar-brand" th:href="@{/}"><img th:src="@{/images/headerlogo.jpg}" alt="WTF Logo"/></a>
+                <br>
                 <h2>
                     Welcome to MFinance
                 </h2>
                 <h4>To log in or create a new account please click the Create 
-                    Account or Log In Menu options in the top right of the navigation bar</h4>
+                    Account or Log In Menu options in the top right of the navigation bar</h4>-->
         </div>
             <div class="container-fluid">
                 <div class="row">
@@ -89,7 +100,7 @@ and open the template in the editor.
                 </div>
               </div>
             </div>                   
-        <!-- <a th:href="@{/home}">Login here</a>/* -->
+
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
