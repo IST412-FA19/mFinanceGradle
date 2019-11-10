@@ -7,10 +7,21 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>mFinance</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <style>
+            .jumbotron {
+                padding: 100px 25px;
+            }
+            .container-fluid {
+                padding: 60px 50px;
+            }
+        </style>
     </head>
     <body>
         <div class="container-width">
@@ -20,6 +31,9 @@ and open the template in the editor.
         <ul class="nav navbar-nav navbar-dark">
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/}">Loan Offerings</a>
+            </li>
+                        <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Apply</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/}">Customer Services</a>
@@ -40,11 +54,42 @@ and open the template in the editor.
             </li>
         </ul>
         </nav>
-        <div>
-            <h2>Welcome to MFinance. To log in or create a new account please click on Welcome</h2>
+    </div>
+        <div class="jumbotron text-center">
+                <h2>
+                    Welcome to MFinance
+                </h2>
+                <h4>To log in or create a new account please click the Create 
+                    Account or Log In Menu options in the top right of the navigation bar</h4>
         </div>
-        <a th:href="@{/home}">Welcome</a>
-        </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class ="col-sm-8">
+                        <h2>About mFinance</h2>
+                        <h4>Our company was created out of the need to provide every day consumers 
+                           with the resources needed to improve the quality of their lives. Whether you need 
+                           to update your kitchen, buy a new car for your teenager, or need 
+                           that beach-vacation to wind down - we can help you!</h4> 
+                       <button class="btn btn-default btn-lg">Who we are</button>
+                    </div>
+                <div class="col-sm-4">
+                </div>
+              </div>
+            </div>
+          <div class="container-fluid bg-grey">
+                <div class="row">
+                <div class ="col-sm-8">  
+                    <h2>Customer Services</h2>
+                    <h4>Everyone has questions, and we have the team to help you, no matter
+                        how big or small!</h4> 
+                    <button class="btn btn-default btn-lg">Contact us</button>
+                </div>
+                 <div class="col-sm-4">
+                </div>
+              </div>
+            </div>                   
+        <!-- <a th:href="@{/home}">Login here</a>/* -->
+
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
