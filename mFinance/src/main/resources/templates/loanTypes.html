@@ -33,14 +33,14 @@ and open the template in the editor.
         </style>
     </head>
     <body>
-        <div class="container-width">
+      <div class="container-width">
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <ul class="nav navbar-nav navbar-dark">
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/}">Loan Offerings</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/carLoan}">Apply</a>
+                <a class="nav-link" th:href="@{/loanTypes}">Apply</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/}">Customer Services</a>
@@ -62,25 +62,14 @@ and open the template in the editor.
         </ul>
         </nav>
     </div>
-        <div class="jumbotron text-center">
-                            <!-- in image I've tried src, href, th:src, and th:href-->
-                <!--<a class="navbar-brand" th:href="@{/}"><img th:src="@{/images/headerlogo.jpg}" alt="WTF Logo"/></a>
-                <br>
-                <h2>
-                    Welcome to MFinance
-                </h2>
-                <h4>To log in or create a new account please click the Create 
-                    Account or Log In Menu options in the top right of the navigation bar</h4>-->
-        </div>
             <div class="container-fluid">
                 <div class="row">
                     <div class ="col-sm-8">
-                        <h2>About mFinance</h2>
-                        <h4>Our company was created out of the need to provide every day consumers 
-                           with the resources needed to improve the quality of their lives. Whether you need 
-                           to update your kitchen, buy a new car for your teenager, or need 
-                           that beach-vacation to wind down - we can help you!</h4> 
-                       <button class="btn btn-default btn-lg">Who we are</button>
+                        <h2>Car Loans</h2>
+                        <h4>Whether your car has broken down, you're ready for an upgrade
+                        or you found the perfect 1968 hobby car to fix up, we offer
+                        car loans with great rates to help you get what you want</h4> 
+                        <!--<button class="btn btn-default btn-lg" th:action="@{/loadCarView}" method="get">Apply Now</button>-->
                     </div>
                 <div class="col-sm-4">
                 </div>
@@ -89,20 +78,14 @@ and open the template in the editor.
           <div class="container-fluid bg-grey">
                 <div class="row">
                 <div class ="col-sm-8">  
-                    <h2>Customer Services</h2>
-                    <h4>Everyone has questions, and we have the team to help you, no matter
-                        how big or small!</h4> 
-                    <button class="btn btn-default btn-lg">Contact us</button>
+                    <h2>Personal Loans</h2>
+                    <h4>......</h4> 
+                    <button class="btn btn-default btn-lg">Apply Now</button>
                 </div>
                  <div class="col-sm-4">
                 </div>
               </div>
             </div>                   
 
-
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     </body>
 </html>
