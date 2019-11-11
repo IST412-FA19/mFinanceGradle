@@ -23,7 +23,16 @@ public class UsersController {
     private ApplicationUserRepository userRepository;
     
     @PostMapping(value = "/users")
-    public RedirectView addUser(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password) {
+    public RedirectView addUser(@RequestParam(value = "firstName") String firstName,
+            @RequestParam(value = "lastName") String lastName,
+            @RequestParam(value = "email") String email,
+            @RequestParam(value = "username") String username, 
+            @RequestParam(value = "password") String password,
+            @RequestParam(value = "address") String address,
+            @RequestParam(value = "address2") String address2,
+            @RequestParam(value = "city") String city,
+            @RequestParam(value = "state") String state,
+            @RequestParam(value = "zip") String zip) {
         ApplicationUser newUser = new ApplicationUser();
         
         newUser.setPassword(password);

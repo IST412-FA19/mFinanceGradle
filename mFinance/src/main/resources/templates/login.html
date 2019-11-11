@@ -10,7 +10,12 @@ and open the template in the editor.
         <title>Login</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+            <style>
+                .container-fluid {
+                    width: 40%;
+                    position: center;
+            }
+            </style>
     </head>
     <body>
         <div class="container-width">
@@ -40,18 +45,34 @@ and open the template in the editor.
                 </li>
             </ul>
         </nav>
-        <div th:if="${param.error}">
-            <em>Hint: Try "admin" and "password" as your credentials</em>
-        </div>
-        <div>
-            <h1>Enter Credentials</h1>
-        </div>
-        <form th:action="@{/login}" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
+
+        <!--<form th:action="@{/login}" method="post">
+                    <div><label> User Name : <input type="text" name="username"/> </label></div>
             <div><label> Password: <input type="password" name="password"/> </label></div>
             <div><input type="submit" value="Sign In"/></div>
         </form>
-        <div><a th:href="@{/register}"/>Register for an account</div>
+        <div><a th:href="@{/register}"/>Register for an account</div>-->
+        
+        <div class="container-fluid">
+              <h1>Enter Credentials</h1>
+        <form th:action="@{/login}" method="post">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" name="username" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div th:if="${param.error}">
+            <em>Hint: Try "admin" and "password" as your credentials</em>
+        </div>
+        </div>
+        
+        
+        
         </div>
     </body>
 </html>
