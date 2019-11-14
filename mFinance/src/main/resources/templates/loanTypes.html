@@ -37,11 +37,11 @@ and open the template in the editor.
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <ul class="nav navbar-nav navbar-dark">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">Loan Offerings</a>
+                <a class="nav-link" th:href="@{/loanTypes}">Loan Offerings</a>
             </li>
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link" th:href="@{/loanTypes}">Apply</a>
-            </li>
+            </li>-->
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/}">Customer Services</a>
             </li>
@@ -68,8 +68,9 @@ and open the template in the editor.
                         <h2>Car Loans</h2>
                         <h4>Whether your car has broken down, you're ready for an upgrade
                         or you found the perfect 1968 hobby car to fix up, we offer
-                        car loans with great rates to help you get what you want</h4> 
-                        <!--<button class="btn btn-default btn-lg" th:action="@{/loadCarView}" method="get">Apply Now</button>-->
+                        car loans with great rates to help you get what you want or need.</h4> 
+                        <a class="nav-link" th:href="@{/carLoan}">Apply</a>
+                        <!--<button class="btn btn-default btn-lg" th:href="@{/login}">Apply Now</button>-->
                     </div>
                 <div class="col-sm-4">
                 </div>

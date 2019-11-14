@@ -33,6 +33,7 @@ public class UsersController {
             @RequestParam(value = "city") String city,
             @RequestParam(value = "state") String state,
             @RequestParam(value = "zip") String zip) {
+       
         ApplicationUser newUser = new ApplicationUser();
         
         newUser.setPassword(password);
