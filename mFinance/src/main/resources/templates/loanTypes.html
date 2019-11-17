@@ -8,84 +8,60 @@ and open the template in the editor.
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>mFinance</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-        <style>
-            .jumbotron {
-                background-image: url("/images/headerlogo.jpg");
-                  height:300px;
-                  background-repeat: no-repeat;
-                  background-position: center;
-                  background-size: auto 100%;
-                  background-color: black;
-                  padding: 0;
-            }
-            .container-fluid {
-                padding: 60px 50px;
-            }
-            .navbar {
-                padding: 0;
-            }
-        </style>
-    </head>
-    <body>
-      <div class="container-width">
-            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <ul class="nav navbar-nav navbar-dark">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">Loan Offerings</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/loanTypes}">Apply</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">Customer Services</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">About mFinance</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">Contact Us</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto navbar-dark">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/register}">Create Account</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/login}">Log In</a>
-            </li>
-        </ul>
-        </nav>
-    </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class ="col-sm-8">
-                        <h2>Car Loans</h2>
-                        <h4>Whether your car has broken down, you're ready for an upgrade
-                        or you found the perfect 1968 hobby car to fix up, we offer
-                        car loans with great rates to help you get what you want</h4> 
-                        <!--<button class="btn btn-default btn-lg" th:action="@{/loadCarView}" method="get">Apply Now</button>-->
-                    </div>
-                <div class="col-sm-4">
-                </div>
-              </div>
-            </div>
-          <div class="container-fluid bg-grey">
-                <div class="row">
-                <div class ="col-sm-8">  
-                    <h2>Personal Loans</h2>
-                    <h4>......</h4> 
-                    <button class="btn btn-default btn-lg">Apply Now</button>
-                </div>
-                 <div class="col-sm-4">
-                </div>
-              </div>
-            </div>                   
+            <title>mFinance</title>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+                  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+                    <style>
+                        .jumbotron {
+                            background-image: url("/images/headerlogo.jpg");
+                            height:300px;
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            background-size: auto 100%;
+                            background-color: black;
+                            padding: 0;
+                        }
+                        .container-fluid {
+                            padding: 60px 50px;
+                        }
+                        .navbar {
+                            padding: 0;
+                        }
+                    </style>
+                    </head>
+                    <body>
+                        <div class="container-width">
+                            <nav th:replace="header :: header">
+                            </nav>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class ="col-sm-8">
+                                    <h2>Car Loans</h2>
+                                    <h4>Whether your car has broken down, you're ready for an upgrade
+                                        or you found the perfect 1968 hobby car to fix up, we offer
+                                        car loans with great rates to help you get what you want or need.</h4> 
+                                    <a class="nav-link" th:href="@{/carLoan}">Apply</a>
+                                    <!--<button class="btn btn-default btn-lg" th:href="@{/login}">Apply Now</button>-->
+                                </div>
+                                <div class="col-sm-4">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-fluid bg-grey">
+                            <div class="row">
+                                <div class ="col-sm-8">  
+                                    <h2>Personal Loans</h2>
+                                    <h4>......</h4> 
+                                    <button class="btn btn-default btn-lg">Apply Now</button>
+                                </div>
+                                <div class="col-sm-4">
+                                </div>
+                            </div>
+                        </div>                   
 
-    </body>
-</html>
+                    </body>
+                    </html>

@@ -10,42 +10,32 @@ and open the template in the editor.
         <title>Home</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+        <link rel="stylesheet" th:href="@{css/home.css}"> 
     </head>
     <body>
         <div class="container-width">
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <a class="navbar-brand" th:href="@{/}">mFinance Logo</a>
-
-            <ul class="nav navbar-nav navbar-dark">
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/}">Loan Offerings</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/}">Customer Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/}">About mFinance</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/}">Contact Us</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto navbar-dark">
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/register}">Create Account</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/login}">Log In</a>
-                </li>
-            </ul>
-        </nav>
-        <div class="jumbotron text-center">
-            <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-            <form th:action="@{/logout}" method="post">
-                <input type="submit" value="Sign Out"></input>
-
-            </form>
+            <nav th:replace="header :: header">
+            </nav>
+            <div class="jumbotron text-center">
+                <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <h2 class="col text-center">mFinance Offerings</h2>
+                </div>
+                <div class="text-center">
+                    <form th:action="@{/}" method="get">
+                        <div class="btn-group btn-group-lg">
+                            <button type="button" class="btn btn-primary" th:href="@{/carLoan}">Car Loan</button>
+                            <button type="button" class="btn btn-primary" th:href="@{/carloan}">Car Loan</button>
+                            <button type="button" class="btn btn-primary" th:href="@{/carloan}">Car Loan</button>
+                        </div>
+                    </form>
+                </div>
+                <form class="text-center" th:action="@{/logout}" method="post">
+                    <input type="submit" value="Sign Out"></input>
+                </form>
+            </div>
         </div>
         </div>
             

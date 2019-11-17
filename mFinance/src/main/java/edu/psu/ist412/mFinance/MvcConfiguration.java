@@ -27,10 +27,12 @@ public class MvcConfiguration implements WebMvcConfigurer {
         registry.addViewController("/register").setViewName("register");
         registry.addViewController("/carLoan").setViewName("carLoan");
         registry.addViewController("/loanTypes").setViewName("loanTypes");
+        registry.addViewController("/about").setViewName("about");
     }
     
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry){
         registry.addResourceHandler("/images/**").addResourceLocations("classpath:/static/images/");
+        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
     }
 }
