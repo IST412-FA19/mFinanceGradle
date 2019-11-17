@@ -14,9 +14,9 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <style>
             .jumbotron {
-                  height:600;
-                  background-color: black;
-                  padding: 0;
+                height:600;
+                background-color: black;
+                padding: 0;
             }
             .container-fluid {
                 padding: 60px 50px;
@@ -25,71 +25,46 @@ and open the template in the editor.
                 padding: 0;
             }
         </style>
-        
+
     </head>
-        <style>
-            .jumbotron {
-                  height:500px;
-                   background-color: black;
-                  padding: 0;
-            }
-            .container-fluid {
-                padding: 60px 50px;
-            }
-            .navbar {
-                padding: 10px 40px 10px 10px;
-            }
-            .nav-link {
-                padding: 20px 20px;
-            }
-            h2 {
-                color: white;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container-width">
-            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <ul class="nav navbar-nav navbar-dark">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/loanTypes}">Loan Offerings</a>
-            </li>
-           <!--<li class="nav-item">
-                <a class="nav-link" th:href="@{/carLoan}">Apply</a>
-            </li>-->
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">Customer Services</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/about}">About mFinance</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">Contact Us</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto navbar-dark">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/register}">Create Account</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/login}">Log In</a>
-            </li>
-        </ul>
+    <style>
+        .jumbotron {
+            height:500px;
+            background-color: black;
+            padding: 0;
+        }
+        .container-fluid {
+            padding: 60px 50px;
+        }
+        .navbar {
+            padding: 10px 40px 10px 10px;
+        }
+        .nav-link {
+            padding: 20px 20px;
+        }
+        h2 {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-width">
+        <nav th:replace="header :: header">
         </nav>
     </div>
-        <div class="jumbotron text-center">
-              <div class="container-fluid">
-                <h2>About Us</h2>
-                <br>
-                <h4>Our company was created out of the need to provide every day consumers 
-                   with the resources needed to improve the quality of their lives. Whether you need 
-                   to update your kitchen, buy a new car for your teenager, or need 
-                   that beach-vacation to wind down - we can help you!</h4> 
-                 </div>
-              </div>
+    <div class="jumbotron text-center">
+        <div class="container-fluid">
+            <h2>About Us</h2>
+            <br>
+            <h4>Our company was created out of the need to provide every day consumers 
+                with the resources needed to improve the quality of their lives. Whether you need 
+                to update your kitchen, buy a new car for your teenager, or need 
+                that beach-vacation to wind down - we can help you!</h4> 
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
-    </body>
+
+</body>
 </html>

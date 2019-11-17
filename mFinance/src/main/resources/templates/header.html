@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+    <head>
+        <title>Header Fragment</title>
+    </head>
+    <body>
+        <nav th:fragment="header" class="navbar navbar-expand-sm bg-dark navbar-dark" >
+            <a class="navbar-brand" th:href="@{/}">mFinance Logo</a>
+
+            <ul class="nav navbar-nav navbar-dark">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Loan Offerings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Customer Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">About mFinance</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Contact Us</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto navbar-dark" sec:authorize="isAnonymous()">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/register}">Create Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/login}">Log In</a>
+                </li>
+            </ul>
+        </nav>
+    </body>
+</html>
