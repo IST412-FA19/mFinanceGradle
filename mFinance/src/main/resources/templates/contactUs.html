@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Contact</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+                
+    </head>
+    <body>
+        <div class="container-width">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <a class="navbar-brand" th:href="@{/}">mFinance Logo</a>
+                
+        <ul class="nav navbar-nav navbar-dark">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Loan Offerings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Customer Services</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">About mFinance</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Contact Us</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto navbar-dark">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/register}">Create Account</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/login}">Log In</a>
+            </li>
+        </ul>
+        </nav>
+            
+        <div class="container">
+          <div style="text-align:center">
+            <h2>Contact Us</h2>
+            <p>If you have mFinance concerns please let us know:</p>
+          </div>
+          <div class="row">
+            <div class="column">
+            </div>
+            <div class="column">
+              <form action="/action_page.php">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                <label for="country">Country</label>
+                <select id="country" name="country">
+                  <option value="usa">USA</option>
+                </select>
+                <br></br>
+                <label for="subject">Subject</label>
+                <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
+                <br></br>
+               
+                <input type="submit" value="Submit">
+              </form>
+            </div>
+          </div>
+        </div>
+        
+        </div>
+    </body>
+</html>
