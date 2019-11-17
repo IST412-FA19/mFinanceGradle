@@ -36,6 +36,13 @@ public class UsersController {
        
         ApplicationUser newUser = new ApplicationUser();
         
+        newUser.setFirstName(firstName);
+        newUser.setLastName(lastName);
+        newUser.setAddress(address);
+        newUser.setAddress2(address2);
+        newUser.setCity(city);
+        newUser.setState(state);
+        newUser.setZip(zip);
         newUser.setPassword(password);
         newUser.setUsername(username);
         
