@@ -60,6 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/cars", 
                         "/register", 
                         "/users", 
+                        "/contactUs",
                         "/css/**",
                         "/images/**", 
                         "/console/**").permitAll()
