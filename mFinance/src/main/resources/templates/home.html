@@ -24,11 +24,11 @@ and open the template in the editor.
                     <h2 class="col text-center">mFinance Offerings</h2>
                 </div>
                 <div class="text-center">
-                    <form th:action="@{/}" method="get">
-                        <div class="btn-group btn-group-lg">
-                            <button type="button" class="btn btn-primary" th:href="@{/carLoan}">Car Loan</button>
-                       
-                        </div>
+                    <form th:action="@{/carLoan}" method="get">
+                  
+                            <a th:href="@{/carLoan}" class="btn btn-dark btn-lg">Car Loan</a>
+                      
+             
                     </form>
                 </div>
                 <form class="text-center" th:action="@{/logout}" method="post">
