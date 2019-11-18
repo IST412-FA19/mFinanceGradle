@@ -6,6 +6,7 @@
 package edu.psu.ist412.mFinance.controllers;
 
 import edu.psu.ist412.mFinance.models.ApplicationUser;
+import edu.psu.ist412.mFinance.models.CarLoan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
@@ -26,19 +27,31 @@ public class LoanController {
         return new RedirectView("/loanTypes");
     }
     
-    @PostMapping(value = "/cars")
+    @PostMapping(value = "/carInput")
     public RedirectView addUser(@RequestParam(value = "firstName") String firstName,
             @RequestParam(value = "lastName") String lastName,
-            @RequestParam(value = "email") String email,
-            @RequestParam(value = "username") String username, 
-            @RequestParam(value = "password") String password,
             @RequestParam(value = "address") String address,
             @RequestParam(value = "address2") String address2,
             @RequestParam(value = "city") String city,
             @RequestParam(value = "state") String state,
-            @RequestParam(value = "zip") String zip) {
+            @RequestParam(value = "zip") String zip,
+            @RequestParam(value= "make") String make,
+            @RequestParam(value = "model") String model,
+            @RequestParam(value = "Year") String year,
+            @RequestParam(value = "mileage") int miles,
+            @RequestParam(value = "vin") String vin) {
        
-       
+        CarLoan newLoan = new CarLoan();
+        
+//        newLoan.setFirstName(firstName);
+//        newLoan.setLastName(lastName);
+//        newLoan.setAddress(address);
+//        newLoan.setAddress2(address2);
+//        newLoan.setCity(city);
+//        newLoan.setState(state);
+//        newLoan.setZip(zip);
+//        newLoan.set
+
         return new RedirectView("/home");
     }
 
