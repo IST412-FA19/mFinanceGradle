@@ -14,32 +14,9 @@ and open the template in the editor.
     </head>
     <body>
         <div class="container-width">
-            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-                <a class="navbar-brand" th:href="@{/}">mFinance Logo</a>
-                
-        <ul class="nav navbar-nav navbar-dark">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">Loan Offerings</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">Customer Services</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">About mFinance</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/}">Contact Us</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto navbar-dark">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/register}">Create Account</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/login}">Log In</a>
-            </li>
-        </ul>
+        <nav th:replace="header :: header">
         </nav>
+        </div>
             
         <div class="container">
           <div style="text-align:center">
