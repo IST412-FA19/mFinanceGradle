@@ -34,4 +34,12 @@ Application Notes
 - JDK 12 will be necessary to run the application.
 - Once running, application can be accessed from http://localhost:8080/
 - test credentials: user: admin password: password
+- Log in to the Console to see user data:
 
+Driver Class: org.h2.Driver
+JDBC URL: jdbc:h2:mem:testdb
+User Name: sa
+Password: blank, literally blank nothing in the field
+
+- Once logged in you can see new user creations. We have a default user set up in the
+import SQL statement and then new users are added to this database
