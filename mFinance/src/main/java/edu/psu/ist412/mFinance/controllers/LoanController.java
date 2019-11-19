@@ -31,7 +31,8 @@ public class LoanController {
     @GetMapping(value = "/carForm")
     public RedirectView loadCarLoanView(){
         return new RedirectView("/carLoan");
-   
+    }
+    
     @PostMapping(value = "/carForm")
     public RedirectView outPutView(@RequestParam(value = "firstName") String firstName,
             @RequestParam(value = "lastName") String lastName,
