@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">   
+    <head>
+        <title>Home</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" th:href="@{css/home.css}"> 
+    </head>
+    <body>
+        <div class="container-width">
+            <nav th:replace="header :: header">
+                                <form class="text-center" th:action="@{/logout}" method="post">
+                    <input type="submit" class="btn btn-primary" value="Sign Out"></input>
+                </form>
+            </nav>
+            <div class="jumbotron text-center">
+                <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <h2 class="col text-center">successfully created car loan form</h2>
+                </div>
+                <div class="text-center">
+                    <form th:action="@{/}" method="get">
+                        <div class="btn-group btn-group-lg">
+                            <button class="btn btn-primary">Next</button>
+                       
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        </div>
+            
+    </body>
+</html>
