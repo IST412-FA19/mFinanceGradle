@@ -23,81 +23,68 @@ and open the template in the editor.
         </nav>
     </div>
             <div class="container-fluid">
-                <h1>Create an account</h1>
-                <form>
+                <h1>Apply for a Car Loan</h1>
+                <form action="#" th:action="@{/carForm}" method="post">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="firstName">First Name</label>
-                            <input type="text" class="form-control" id="firstName4" placeholder="First Name">
+                            <input type="text" class="form-control" name="firstName" placeholder="First Name">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="lastName">Last Name</label>
-                            <input type="text" class="form-control" id="lastName4" placeholder="Last Name">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputPassword4">Password</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                            <input type="text" class="form-control" name="lastName" placeholder="Last Name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputAddress">Address</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                        <input type="text" class="form-control" name="inputAddress" placeholder="1234 Main St">
                     </div>
                     <div class="form-group">
                         <label for="inputAddress2">Address 2</label>
-                        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                        <input type="text" class="form-control" name="inputAddress2" placeholder="Apartment, studio, or floor">
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputCity">City</label>
-                            <input type="text" class="form-control" id="inputCity">
+                            <input type="text" class="form-control" name="inputCity">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputState">State</label>
-                            <select id="inputState" class="form-control">
+                            <select name="inputState" class="form-control">
                                 <option selected>Choose...</option>
                                 <option>...</option>
                             </select>
                         </div>
                         <div class="form-group col-md-2">
                             <label for="inputZip">Zip</label>
-                            <input type="text" class="form-control" id="inputZip">
+                            <input type="text" class="form-control" name="inputZip">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="make">Make</label>
-                            <input type="text" class="form-control" id="make">
+                            <input type="text" class="form-control" name="make">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="model">Model</label>
-                            <input type="text" class="form-control" id="model">
+                            <input type="text" class="form-control" name="model">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="year">Year</label>
-                            <input type="text" class="form-control" id="year">
+                            <input type="text" class="form-control" name="year">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="mileage">Mileage</label>
-                            <input type="text" class="form-control" id="mileage">
+                            <input type="text" class="form-control" name="mileage">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="vin">VIN Number</label>
-                            <input type="text" class="form-control" id="vin">
+                            <input type="text" class="form-control" name="vin">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                                <label class="form-check-label" for="gridCheck">
-                                    Check me out
-                                </label>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Sign In</button>
+                    <button class="btn btn-primary">Next</button>
                 </form>
+                 <div th:if="${param.error}">
+                    <em>Please check to make sure you fill in every field before clicking Next</em>
+                </div>
             </div>
 
 
