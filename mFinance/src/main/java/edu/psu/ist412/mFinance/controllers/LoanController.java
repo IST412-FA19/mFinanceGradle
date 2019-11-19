@@ -27,38 +27,13 @@ public class LoanController {
         return new RedirectView("/loanTypes");
     }
     
+
     @GetMapping(value = "/carForm")
     public RedirectView loadCarLoanView(){
         return new RedirectView("/carLoan");
-    }
-       
-//        @PostMapping(value = "/carForm")
-//    public RedirectView approve(CarLoan carLoan){
-//        return new RedirectView("/about");
-//    }
-//    
-//    @PostMapping(value = "/carForm")
-//    public RedirectView approve2(@RequestParam(value = "firstName") String firstName,
-//            @RequestParam(value = "lastName") String lastName,
-//            @RequestParam(value = "inputAddress") String address1, 
-//            @RequestParam(value = "inputAddress2") String address2,
-//            @RequestParam(value = "inputCity") String city,
-//            @RequestParam(value = "inputState") String state,
-//            @RequestParam(value = "inputZip") String zip,
-//            @RequestParam(value = "make") String make,
-//            @RequestParam(value = "model") String model,
-//            @RequestParam(value = "year") String year,
-//            @RequestParam(value = "mileage") int miles,    
-//            @RequestParam(value = "vin") String vin)
-//            {
-//                
-//            CarLoan loan = new CarLoan(firstName, lastName, address1, address2,
-//                city, state, zip, make, model, year, miles, vin);
-//        return new RedirectView("/output");
-//    }
-    
-        @PostMapping(value = "/carForm")
-    public RedirectView outPUtView(@RequestParam(value = "firstName") String firstName,
+   
+    @PostMapping(value = "/carForm")
+    public RedirectView outPutView(@RequestParam(value = "firstName") String firstName,
             @RequestParam(value = "lastName") String lastName,
             @RequestParam(value = "inputAddress") String address1, 
             @RequestParam(value = "inputAddress2") String address2,
