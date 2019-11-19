@@ -15,6 +15,9 @@ and open the template in the editor.
     <body>
         <div class="container-width">
             <nav th:replace="header :: header">
+                                <form class="text-center" th:action="@{/logout}" method="post">
+                    <input type="submit" class="btn btn-primary" value="Sign Out"></input>
+                </form>
             </nav>
             <div class="jumbotron text-center">
                 <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
@@ -24,16 +27,14 @@ and open the template in the editor.
                     <h2 class="col text-center">mFinance Offerings</h2>
                 </div>
                 <div class="text-center">
-                    <form th:action="@{/carLoan}" method="get">
-                  
-                            <a th:href="@{/carLoan}" class="btn btn-dark btn-lg">Car Loan</a>
-                      
-             
+                    <form th:action="@{/carForm}" method="get">
+                        <div class="btn-group btn-group-lg">
+                            <button class="btn btn-primary">Car Loan</button>
+                       
+                        </div>
                     </form>
                 </div>
-                <form class="text-center" th:action="@{/logout}" method="post">
-                    <input type="submit" value="Sign Out"></input>
-                </form>
+
             </div>
         </div>
         </div>
