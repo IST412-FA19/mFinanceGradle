@@ -22,6 +22,16 @@ public class UsersController {
     @Autowired
     private ApplicationUserRepository userRepository;
     
+    @GetMapping(value = "/aboutPage")
+    public RedirectView loadaboutView(){
+        return new RedirectView("/about");
+    } 
+    
+    @GetMapping(value = "/contact")
+    public RedirectView loadContactView(){
+        return new RedirectView("/contactUs");
+    } 
+    
     @PostMapping(value = "/users")
     public RedirectView addUser(@RequestParam(value = "firstName") String firstName,
             @RequestParam(value = "lastName") String lastName,
