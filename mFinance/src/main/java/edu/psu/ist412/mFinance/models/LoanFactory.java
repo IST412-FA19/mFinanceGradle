@@ -16,8 +16,11 @@ public class LoanFactory {
          return null;
       }		
       if(loanType.equalsIgnoreCase("CAR")){
-         return new CarLoan();
+//         return new CarLoan(String first, String last, String add, String add2, String city, 
+//            String st, String z, String m, String mo, String y, int mile, String vin);
       }      
+      
       return null;
    }
 }
+

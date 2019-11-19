@@ -8,6 +8,7 @@ package edu.psu.ist412.mFinance.controllers;
 import edu.psu.ist412.mFinance.dao.ApplicationUserRepository;
 import edu.psu.ist412.mFinance.models.ApplicationUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
