@@ -57,6 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/loanTypes", 
                         "/about", 
                         "/carLoan", 
+                        "/output",
                         "/cars", 
                         "/register", 
                         "/users", 

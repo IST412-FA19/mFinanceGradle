@@ -33,6 +33,11 @@ public class UsersController {
         return new RedirectView("/contactUs");
     } 
     
+    @GetMapping(value = "output")
+        public RedirectView loadOutputView(){
+        return new RedirectView("/output");
+    } 
+    
     @PostMapping(value = "/users")
     public RedirectView addUser(@RequestParam(value = "firstName") String firstName,
             @RequestParam(value = "lastName") String lastName,
