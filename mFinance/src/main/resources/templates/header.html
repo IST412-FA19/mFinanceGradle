@@ -36,6 +36,14 @@ and open the template in the editor.
                     <a class="nav-link" th:href="@{/login}">Log In</a>
                 </li>
             </ul>
+            <ul class="navbar-nav ml-auto navbar-dark" sec:authorize="isAuthenticated()">
+                <li class="nav-item">
+<!--                    <form th:action="@{/logout}" method="post">
+                        <input type="submit" class="nav-link" value="Sign Out"></input>
+                    </form>-->
+                    <a class="nav-link" th:href="@{/logout}">Sign Out</a>
+                </li>
+            </ul>
         </nav>
     </body>
 </html>
