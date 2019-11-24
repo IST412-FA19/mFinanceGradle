@@ -51,7 +51,7 @@ public class LoanController {
             CarLoan loan = new CarLoan(firstName, lastName, address1, address2,
                 city, state, zip, make, model, year, miles, vin);
 
-            return new RedirectView("/output");
+            return new RedirectView("/loanApproval");
     }
     
 
