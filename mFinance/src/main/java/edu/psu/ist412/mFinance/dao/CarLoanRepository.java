@@ -6,6 +6,7 @@
 package edu.psu.ist412.mFinance.dao;
 
 import edu.psu.ist412.mFinance.models.CarLoan;
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +16,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CarLoanRepository extends CrudRepository<CarLoan, Integer> {
-    
+    List<CarLoan> findByApplicantAccountId(Integer id);
 }
