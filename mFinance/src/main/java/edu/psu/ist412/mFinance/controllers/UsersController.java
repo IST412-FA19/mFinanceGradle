@@ -33,7 +33,6 @@ public class UsersController {
         return new RedirectView("/contactUs");
     } 
     
-   
     @PostMapping(value = "/users")
     public RedirectView addUser(@RequestParam(value = "firstName") String firstName,
             @RequestParam(value = "lastName") String lastName,

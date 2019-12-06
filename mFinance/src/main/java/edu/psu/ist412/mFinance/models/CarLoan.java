@@ -11,18 +11,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author Randi Semera
  */
 @Entity
-public class CarLoan implements Loan{
+public class CarLoan implements Loan, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     
+    @OneToOne
+    private ApplicationUser applicantAccount;
     @Column(nullable = false, unique = false)
     private String firstName;
     private String lastName;
@@ -32,17 +34,19 @@ public class CarLoan implements Loan{
     private String year;
     private int mileage;
     private String vin;
-
-    public CarLoan(String first, String last, String add, String add2, String city, 
-            String st, String z, String m, String mo, String y, int mile, String vin){
-
-        setCarMake(m);
-        setCarModel(mo);
-        setCarYear(y);
-    }
+    
+    public CarLoan() {}
     
     public Integer getId() {
         return id;
+    }
+    
+    public ApplicationUser getApplicantAccount() {
+        return this.applicantAccount;
+    }
+    
+    public void setApplicantAccount(ApplicationUser applicant) {
+        this.applicantAccount = applicant;
     }
 
     public void setId(Integer id) {
@@ -67,6 +71,71 @@ public class CarLoan implements Loan{
     public void setCarYear(String y){
         this.year=y;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public String getMake() {
+        return make;
+    }
+
+    public void setMake(String make) {
+        this.make = make;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public int getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(int mileage) {
+        this.mileage = mileage;
+    }
+
+    public String getVin() {
+        return vin;
+    }
+
+    public void setVin(String vin) {
+        this.vin = vin;
+    }
+    
     @Override
     public String getDetails(){
         return "Full Name: " + this.firstName 

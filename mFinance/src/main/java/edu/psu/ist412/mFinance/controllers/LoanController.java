@@ -5,9 +5,15 @@
  */
 package edu.psu.ist412.mFinance.controllers;
 
+import edu.psu.ist412.mFinance.dao.ApplicationUserRepository;
+import edu.psu.ist412.mFinance.dao.CarLoanRepository;
 import edu.psu.ist412.mFinance.models.ApplicationUser;
 import edu.psu.ist412.mFinance.models.CarLoan;
+import java.util.HashSet;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +27,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 public class LoanController {
     @Autowired
+    private ApplicationUserRepository userRepository;
+    @Autowired
+    private CarLoanRepository carLoanRepository;
     
     @GetMapping(value = "/loans")
     public RedirectView loadTypesView(){
         return new RedirectView("/loanTypes");
     }
-    
 
     @GetMapping(value = "/carForm")
     public RedirectView loadCarLoanView(){
@@ -47,9 +55,26 @@ public class LoanController {
             @RequestParam(value = "mileage") int miles,    
             @RequestParam(value = "vin") String vin)
             {
+            
+            CarLoan loan = new CarLoan();
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            
+            if (principal != null) {
+                String username = ((UserDetails)principal).getUsername();
+                ApplicationUser user = userRepository.findByUsername(username);
                 
-            CarLoan loan = new CarLoan(firstName, lastName, address1, address2,
-                city, state, zip, make, model, year, miles, vin);
+                loan.setApplicantAccount(user);
+            }
+            
+            loan.setLastName(lastName);
+            loan.setCarMake(make);
+            loan.setCarModel(model);
+            loan.setCarYear(year);
+            loan.setMileage(miles);
+            loan.setVin(vin);
+            loan.setFirstName(firstName);
+            
+            carLoanRepository.save(loan);
 
             return new RedirectView("/loanApproval");
     }
