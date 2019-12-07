@@ -36,11 +36,17 @@ public class LoanController {
     @PostMapping(value = "/carForm")
     public RedirectView outPutView(@RequestParam(value = "firstName") String firstName,
             @RequestParam(value = "lastName") String lastName,
+            @RequestParam(value = "dob") String dob,
             @RequestParam(value = "inputAddress") String address1, 
             @RequestParam(value = "inputAddress2") String address2,
             @RequestParam(value = "inputCity") String city,
             @RequestParam(value = "inputState") String state,
             @RequestParam(value = "inputZip") String zip,
+            @RequestParam(value = "employer") String employer,
+            @RequestParam(value = "occupation") String occupation,
+            @RequestParam(value = "inputEmpState") String inputEmpState,
+            @RequestParam(value = "salary") String salary,
+            @RequestParam(value = "years") String years,
             @RequestParam(value = "make") String make,
             @RequestParam(value = "model") String model,
             @RequestParam(value = "year") String year,
@@ -48,8 +54,9 @@ public class LoanController {
             @RequestParam(value = "vin") String vin)
             {
                 
-            CarLoan loan = new CarLoan(firstName, lastName, address1, address2,
-                city, state, zip, make, model, year, miles, vin);
+            CarLoan loan = new CarLoan(firstName, lastName, dob, address1, address2,
+                city, state, zip, employer, occupation, inputEmpState, salary,
+                    years, make, model, year, miles, vin);
 
             return new RedirectView("/loanApproval");
     }
