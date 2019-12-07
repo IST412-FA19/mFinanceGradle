@@ -12,6 +12,7 @@ and open the template in the editor.
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
             <style>
                 .container-fluid {
+                    padding-top: 50px;
                     width: 40%;
                     position: center;
                 }
@@ -21,16 +22,17 @@ and open the template in the editor.
         <div class="container-width">
             <nav th:replace="header :: header">
             </nav>
+        </div>
 
             <!--<form th:action="@{/login}" method="post">
                         <div><label> User Name : <input type="text" name="username"/> </label></div>
                 <div><label> Password: <input type="password" name="password"/> </label></div>
                 <div><input type="submit" value="Sign In"/></div>
-            </form>
-            <div><a th:href="@{/register}"/>Register for an account</div>-->
+            </form>-->
+
 
             <div class="container-fluid">
-                <h1>Enter Credentials</h1>
+                <h1>Welcome Back!</h1>
                 <form th:action="@{/login}" method="post">
                     <div class="form-group">
                         <label for="username">Username</label>
@@ -45,10 +47,7 @@ and open the template in the editor.
                 <div th:if="${param.error}">
                     <em>Hint: Try "admin" and "password" as your credentials</em>
                 </div>
+                <div><a th:href="@{/register}"/>Register for an account</div>
             </div>
-
-
-
-        </div>
     </body>
 </html>
