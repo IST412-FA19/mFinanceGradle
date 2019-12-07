@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package edu.psu.ist412.mFinance.models;
-
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -14,12 +13,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
  import javax.persistence.OneToOne;
 
+
 /**
  *
  * @author Randi Semera
  */
 @Entity
-public class CarLoan implements Loan, Serializable{
+public class PersonalLoan implements Loan, Serializable{
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -41,23 +42,11 @@ public class CarLoan implements Loan, Serializable{
     private String salary;
     private String years;
     private double amount;
-    private String make;
-    private String model;
-    private String year;
-    private String mileage;
-    private String vin;
+    private String purpose;
     private Double loanAmount;
-
-//    public CarLoan(String first, String last, String dob, String add, String add2, String city, 
-//            String st, String z, String employer, String occupation, String inputEmpState, 
-//            String salary, String years, String m, String mo, String y, String mile, String vin){
-//
-//        setCarMake(m);
-//        setCarModel(mo);
-//        setCarYear(y);
-//    }
     
-    public CarLoan(){
+
+public PersonalLoan(){
     }
 
     public String getFirstName() {
@@ -171,47 +160,16 @@ public class CarLoan implements Loan, Serializable{
     public void setAmount(double amount) {
         this.amount = amount;
     }
-
-    public String getMake() {
-        return make;
+    
+    public void setPurpose(String p){
+        this.purpose = p;
+    }
+    
+    public String getPurpose(){
+        return purpose;
     }
 
-    public void setMake(String make) {
-        this.make = make;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
-    public String getMileage() {
-        return mileage;
-    }
-
-    public void setMileage(String mileage) {
-        this.mileage = mileage;
-    }
-
-    public String getVin() {
-        return vin;
-    }
-
-    public void setVin(String vin) {
-        this.vin = vin;
-    }
-
+    
     public Double getLoanAmount() {
         return loanAmount;
     }
@@ -248,15 +206,14 @@ public class CarLoan implements Loan, Serializable{
         return "Full Name: " + this.firstName 
                 + " " + this.lastName
                 + " \nLoan Amount Requested: $" + this.amount 
-                + " \nCar Make: " + this.make 
-                + " \nCar Model: " + this.model 
-                + " \nYear: " + this.year;
+                + " \nLoan Purposes: " + this.purpose; 
     }    
     
     @Override
     public String getLoanType(){
-        return "Car Loan";
+        return "Personal Loan";
     }
-
 }
+
+
 

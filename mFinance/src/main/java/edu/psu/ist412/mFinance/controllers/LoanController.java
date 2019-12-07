@@ -5,8 +5,16 @@
  */
 package edu.psu.ist412.mFinance.controllers;
 
+import edu.psu.ist412.mFinance.dao.ApplicationUserRepository;
 import edu.psu.ist412.mFinance.models.ApplicationUser;
 import edu.psu.ist412.mFinance.models.CarLoan;
+import edu.psu.ist412.mFinance.models.PersonalLoan;
+import edu.psu.ist412.mFinance.dao.CarLoanRepository;
+import edu.psu.ist412.mFinance.dao.PersonalLoanRepository;
+import java.util.HashSet; 
+import java.util.Set;
+import org.springframework.security.core.context.SecurityContextHolder; 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
@@ -21,6 +29,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 public class LoanController {
     @Autowired
+    private ApplicationUserRepository userRepository; 
+    @Autowired
+    private CarLoanRepository carLoanRepository;
+    //@Autowired
+    private PersonalLoanRepository personalLoanRepository;
     
     @GetMapping(value = "/loans")
     public RedirectView loadTypesView(){
@@ -33,8 +46,59 @@ public class LoanController {
         return new RedirectView("/carLoan");
     }
     
+    @GetMapping(value = "/personalLoanForm")
+    public RedirectView loadPersonalLoanView(){
+        return new RedirectView("/personalLoan");
+    }
+    
+    @PostMapping(value = "/personalForm")
+    public RedirectView personalLoanForm(@RequestParam(value = "firstName") String firstName,
+            @RequestParam(value = "lastName") String lastName,
+            @RequestParam(value = "dob") String dob,
+            @RequestParam(value = "inputAddress") String address1, 
+            @RequestParam(value = "inputAddress2") String address2,
+            @RequestParam(value = "inputCity") String city,
+            @RequestParam(value = "inputState") String state,
+            @RequestParam(value = "inputZip") String zip,
+            @RequestParam(value = "employer") String employer,
+            @RequestParam(value = "occupation") String occupation,
+            @RequestParam(value = "inputEmpState") String inputEmpState,
+            @RequestParam(value = "salary") String salary,
+            @RequestParam(value = "purpose") String purpose)
+        {
+            PersonalLoan loan = new PersonalLoan();
+            
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+
+            if (principal != null) { 
+                String username = ((UserDetails)principal).getUsername(); 
+                ApplicationUser user = userRepository.findByUsername(username);
+                loan.setApplicantAccount(user);
+            }
+            
+            loan.setFirstName(firstName);
+            loan.setLastName(lastName);
+            loan.setDob(dob);
+            loan.setAddress(address1);
+            loan.setAddress2(address2);
+            loan.setCity(city);
+            loan.setState(state);
+            loan.setZip(zip);
+            loan.setEmployer(employer);
+            loan.setOccupation(occupation);
+            loan.setEmployerState(inputEmpState);
+            loan.setSalary(salary);
+            loan.setPurpose(purpose);
+ 
+            
+            personalLoanRepository.save(loan);
+                System.out.println("Loan: " + loan.getId() + " " + loan.getLoanType() + " " + loan.getFirstName());
+            
+            return new RedirectView("/loanApproval");
+    }
+    
     @PostMapping(value = "/carForm")
-    public RedirectView outPutView(@RequestParam(value = "firstName") String firstName,
+    public RedirectView carLoanForm(@RequestParam(value = "firstName") String firstName,
             @RequestParam(value = "lastName") String lastName,
             @RequestParam(value = "dob") String dob,
             @RequestParam(value = "inputAddress") String address1, 
@@ -50,17 +114,43 @@ public class LoanController {
             @RequestParam(value = "make") String make,
             @RequestParam(value = "model") String model,
             @RequestParam(value = "year") String year,
-            @RequestParam(value = "mileage") int miles,    
+            @RequestParam(value = "mileage") String miles,    
             @RequestParam(value = "vin") String vin)
             {
-                
-            CarLoan loan = new CarLoan(firstName, lastName, dob, address1, address2,
-                city, state, zip, employer, occupation, inputEmpState, salary,
-                    years, make, model, year, miles, vin);
+            CarLoan loan = new CarLoan();
+            
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
 
+            if (principal != null) { 
+                String username = ((UserDetails)principal).getUsername(); 
+                ApplicationUser user = userRepository.findByUsername(username);
+                loan.setApplicantAccount(user);
+            }
+            
+            loan.setFirstName(firstName);
+            loan.setLastName(lastName);
+            loan.setDob(dob);
+            loan.setAddress(address1);
+            loan.setAddress2(address2);
+            loan.setCity(city);
+            loan.setState(state);
+            loan.setZip(zip);
+            loan.setEmployer(employer);
+            loan.setOccupation(occupation);
+            loan.setEmployerState(inputEmpState);
+            loan.setSalary(salary);
+            loan.setMake(make);
+            loan.setModel(model);
+            loan.setYear(year);
+            loan.setMileage(miles);
+            loan.setVin(vin);
+            
+            carLoanRepository.save(loan);
+                System.out.println("Loan: " + loan.getId() + " " + loan.getLoanType() + " " + loan.getFirstName());
+            
             return new RedirectView("/loanApproval");
     }
     
 
-    }
+}
 
