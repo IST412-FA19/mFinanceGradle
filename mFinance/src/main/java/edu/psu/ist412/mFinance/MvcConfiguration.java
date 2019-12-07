@@ -30,6 +30,7 @@ public class MvcConfiguration implements WebMvcConfigurer {
         registry.addViewController("/about").setViewName("about");
         registry.addViewController("/contactUs").setViewName("contactUs");
         registry.addViewController("/loanApproval").setViewName("loanApproval");
+        registry.addViewController("/loanSummary").setViewName("loanSummary");
     }
     
     @Override
