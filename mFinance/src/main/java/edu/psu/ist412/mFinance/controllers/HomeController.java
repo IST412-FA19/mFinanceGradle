@@ -8,7 +8,9 @@ package edu.psu.ist412.mFinance.controllers;
 
 import edu.psu.ist412.mFinance.dao.ApplicationUserRepository; 
 import edu.psu.ist412.mFinance.dao.CarLoanRepository; 
+import edu.psu.ist412.mFinance.dao.PersonalLoanRepository;
 import edu.psu.ist412.mFinance.models.CarLoan; 
+import edu.psu.ist412.mFinance.models.PersonalLoan;
 import java.util.List; 
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.security.core.context.SecurityContextHolder; 
@@ -30,16 +32,30 @@ public class HomeController {
 
     @Autowired 
     CarLoanRepository carLoanRepository; 
+    
+    @Autowired
+    PersonalLoanRepository personalLoanRepository;
 
     @GetMapping("/home") 
-
     public ModelAndView index() { 
 
         ModelAndView response = new ModelAndView("home"); 
         String user = ((UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername(); 
-        int userId = userRepository.findByUsername(user).getId(); 
-        List<CarLoan> loans = carLoanRepository.findByApplicantAccountId(userId); 
-        response.addObject("loans", loans); 
+        
+     
         return response; 
     } 
+    
+    @GetMapping("/loanSummary")
+    public ModelAndView summary(){
+        
+        ModelAndView response = new ModelAndView("loanSummary");
+        
+        String user = ((UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername(); 
+        int userId = userRepository.findByUsername(user).getId(); 
+        List<CarLoan> loans = carLoanRepository.findByApplicantAccountId(userId);
+        List<PersonalLoan> ploans = personalLoanRepository.findByApplicantAccountId(userId);
+        
+        return response;
+    }
 }

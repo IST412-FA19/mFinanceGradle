@@ -32,7 +32,7 @@ public class LoanController {
     private ApplicationUserRepository userRepository; 
     @Autowired
     private CarLoanRepository carLoanRepository;
-    //@Autowired
+    @Autowired
     private PersonalLoanRepository personalLoanRepository;
     
     @GetMapping(value = "/loans")
@@ -46,13 +46,13 @@ public class LoanController {
         return new RedirectView("/carLoan");
     }
     
-    @GetMapping(value = "/personalLoanForm")
+    @GetMapping(value = "/personalForm")
     public RedirectView loadPersonalLoanView(){
         return new RedirectView("/personalLoan");
     }
     
     @PostMapping(value = "/personalForm")
-    public RedirectView personalLoanForm(@RequestParam(value = "firstName") String firstName,
+    public RedirectView personalForm(@RequestParam(value = "firstName") String firstName,
             @RequestParam(value = "lastName") String lastName,
             @RequestParam(value = "dob") String dob,
             @RequestParam(value = "inputAddress") String address1, 
@@ -92,8 +92,7 @@ public class LoanController {
  
             
             personalLoanRepository.save(loan);
-                System.out.println("Loan: " + loan.getId() + " " + loan.getLoanType() + " " + loan.getFirstName());
-            
+                
             return new RedirectView("/loanApproval");
     }
     
