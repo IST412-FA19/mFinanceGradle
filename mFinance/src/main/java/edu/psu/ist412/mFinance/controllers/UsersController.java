@@ -28,11 +28,6 @@ public class UsersController {
         return new RedirectView("/about");
     } 
     
-    @GetMapping(value = "/contact")
-    public RedirectView loadContactView(){
-        return new RedirectView("/contactUs");
-    } 
-    
    
     @PostMapping(value = "/users")
     public RedirectView addUser(@RequestParam(value = "firstName") String firstName,

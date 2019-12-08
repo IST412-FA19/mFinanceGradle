@@ -25,7 +25,7 @@ and open the template in the editor.
                     <a class="nav-link" th:href="@{/about}">About mFinance</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/contactUs}">Contact Us</a>
+                    <a class="nav-link" th:href="@{/contact}">Contact Us</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto navbar-dark" sec:authorize="isAnonymous()">
@@ -47,7 +47,7 @@ and open the template in the editor.
                     <a class="nav-link" th:href="@{/about}">About mFinance</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/contactUs}">Contact Us</a>
+                    <a class="nav-link" th:href="@{/contact}">Contact Us</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto navbar-dark" sec:authorize="isAuthenticated()">
@@ -55,9 +55,6 @@ and open the template in the editor.
                     <a class="nav-link" th:href="@{/home}">Home</a>
                 </li>
                 <li class="nav-item">
-<!--                    <form th:action="@{/logout}" method="post">
-                        <input type="submit" class="nav-link" value="Sign Out"></input>
-                    </form>-->
                     <a class="nav-link" th:href="@{/logout}">Sign Out</a>
                 </li>
             </ul>
