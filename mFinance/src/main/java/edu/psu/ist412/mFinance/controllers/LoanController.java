@@ -51,6 +51,11 @@ public class LoanController {
         return new RedirectView("/personalLoan");
     }
     
+    @GetMapping(value = "/businessForm")
+    public RedirectView loadBusinessLoanView(){
+        return new RedirectView("/businessLoan");
+    }
+    
     @PostMapping(value = "/personalForm")
     public RedirectView personalForm(@RequestParam(value = "firstName") String firstName,
             @RequestParam(value = "lastName") String lastName,
