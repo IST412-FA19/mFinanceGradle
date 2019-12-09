@@ -6,7 +6,10 @@
 package edu.psu.ist412.mFinance.controllers;
 
 import edu.psu.ist412.mFinance.dao.ApplicationUserRepository;
+import edu.psu.ist412.mFinance.dao.ApplicationUserSecurityPrincipalRepository;
 import edu.psu.ist412.mFinance.models.ApplicationUser;
+import edu.psu.ist412.mFinance.models.ApplicationUserSecurityPrincipal;
+import java.util.HashSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +25,8 @@ import org.springframework.web.servlet.view.RedirectView;
 public class UsersController {
     @Autowired
     private ApplicationUserRepository userRepository;
+    @Autowired
+    private ApplicationUserSecurityPrincipalRepository userSecurityPrincipalRepository;
     
     @GetMapping(value = "/aboutPage")
     public RedirectView loadaboutView(){
@@ -40,8 +45,9 @@ public class UsersController {
             @RequestParam(value = "city") String city,
             @RequestParam(value = "state") String state,
             @RequestParam(value = "zip") String zip) {
-       
+        
         ApplicationUser newUser = new ApplicationUser();
+        HashSet<ApplicationUserSecurityPrincipal> principals = new HashSet();
         
         newUser.setFirstName(firstName);
         newUser.setLastName(lastName);
@@ -52,6 +58,10 @@ public class UsersController {
         newUser.setZip(zip);
         newUser.setPassword(password);
         newUser.setUsername(username);
+        newUser.setEmail(email);
+        
+        principals.add(userSecurityPrincipalRepository.findByPrincipalName("ROLE_USER"));
+        newUser.setSecurityPrincipals(principals);
         
         userRepository.save(newUser);
         

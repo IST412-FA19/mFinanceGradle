@@ -5,7 +5,6 @@
  */
 package edu.psu.ist412.mFinance.models;
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -44,6 +43,7 @@ public class PersonalLoan implements Loan, Serializable{
     private double amount;
     private String purpose;
     private Double loanAmount;
+    private LoanStatus status;
     
 
 public PersonalLoan(){
@@ -169,7 +169,7 @@ public PersonalLoan(){
         return purpose;
     }
 
-    
+    @Override
     public Double getLoanAmount() {
         return loanAmount;
     }
@@ -211,8 +211,22 @@ public PersonalLoan(){
     
     @Override
     public String getLoanType(){
-        return "Personal Loan";
+        return "Personal";
     }
+
+    @Override
+    public LoanStatus getLoanStatus() {
+        return this.status;
+    }
+
+    public LoanStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(LoanStatus status) {
+        this.status = status;
+    }
+    
 }
 
 

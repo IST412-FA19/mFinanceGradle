@@ -10,9 +10,8 @@ import edu.psu.ist412.mFinance.models.ApplicationUser;
 import edu.psu.ist412.mFinance.models.CarLoan;
 import edu.psu.ist412.mFinance.models.PersonalLoan;
 import edu.psu.ist412.mFinance.dao.CarLoanRepository;
+import edu.psu.ist412.mFinance.dao.LoanStatusRepository;
 import edu.psu.ist412.mFinance.dao.PersonalLoanRepository;
-import java.util.HashSet; 
-import java.util.Set;
 import org.springframework.security.core.context.SecurityContextHolder; 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +33,8 @@ public class LoanController {
     private CarLoanRepository carLoanRepository;
     @Autowired
     private PersonalLoanRepository personalLoanRepository;
+    @Autowired
+    private LoanStatusRepository loanStatusRepository;
     
     @GetMapping(value = "/loans")
     public RedirectView loadTypesView(){
@@ -94,7 +95,10 @@ public class LoanController {
             loan.setEmployerState(inputEmpState);
             loan.setSalary(salary);
             loan.setPurpose(purpose);
- 
+            loan.setStatus(loanStatusRepository.findByStatusName("INITIATED"));
+            
+            // TODO: Replace with request parameter
+            loan.setLoanAmount(12312414.0);
             
             personalLoanRepository.save(loan);
                 
@@ -148,6 +152,10 @@ public class LoanController {
             loan.setYear(year);
             loan.setMileage(miles);
             loan.setVin(vin);
+            loan.setStatus(loanStatusRepository.findByStatusName("INITIATED"));
+            
+            // TODO: Replace with request parameter
+            loan.setLoanAmount(12312412431.0);
             
             carLoanRepository.save(loan);
                 System.out.println("Loan: " + loan.getId() + " " + loan.getLoanType() + " " + loan.getFirstName());
