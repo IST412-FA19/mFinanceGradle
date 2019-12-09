@@ -11,34 +11,14 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" th:href="@{css/index.css}">
     </head>
-    <style>
-        .jumbotron {
-            height:30%;
-            background-color: darkgray;
-            padding: 0;
-        }
-        .container-fluid {
-            padding: 60px 50px;
-        }
-        .nav-link {
-            padding: 20px 20px;
-        }
-        h2 {
-            color: black;
-        }
-        h4 {
-            color: black;
-        }
-    </style>
-</head>
 <body>
     <div class="container-width">
         <nav th:replace="header :: header">
         </nav>
     </div>
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center"></div>
         <div class="container-fluid">
             <h2>About Us</h2>
             <br>
