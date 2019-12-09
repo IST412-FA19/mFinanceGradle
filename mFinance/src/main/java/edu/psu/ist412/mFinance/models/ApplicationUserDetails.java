@@ -5,8 +5,8 @@
  */
 package edu.psu.ist412.mFinance.models;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -14,10 +14,10 @@ import org.springframework.security.core.userdetails.UserDetails;
  *
  * @author garre
  */
-public class ApplicationUserDetails implements UserDetails {
-    
+public class ApplicationUserDetails implements UserDetails {    
     private String username;
     private String password;
+    private Set<? extends GrantedAuthority> authorities;
 
     public void setUsername(String username) {
         this.username = username;
@@ -27,10 +27,13 @@ public class ApplicationUserDetails implements UserDetails {
         this.password = password;
     }
     
+    public void setAuthorities(Set<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return new ArrayList<>();
+        return authorities;
     }
 
     @Override
