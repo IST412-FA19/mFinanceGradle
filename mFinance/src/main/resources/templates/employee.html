@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">   
+    <head>
+        <title>Home</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" th:href="@{css/home.css}"> 
+    </head>
+    <body>
+        <div class="container-width">
+            <nav th:replace="header :: header"></nav>
+        </div>
+        <div class="d-flex" id="wrapper">
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div class="sidebar-heading">My Account</div>
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item list-group-item-action bg-light" href="/loanSummary">My Loans</a>
+                    <a class="list-group-item list-group-item-action bg-light" href="#">Statements</a>
+                    <a class="list-group-item list-group-item-action bg-light" href="#">Payment</a>  
+                    <a class="list-group-item list-group-item-action bg-light" href="/loanTypes">Apply</a>                    
+                </div>
+            </div>
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                   <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+                   <div class="container-fluid">
+                       <p>If you can see this...you are an employee!</p>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
