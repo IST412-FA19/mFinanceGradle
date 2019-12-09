@@ -41,17 +41,17 @@ and open the template in the editor.
                         <table class="table table-striped my-5">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">Loan ID</th>
                                     <th scope="col">Loan Type</th>
-                                    <th scope="col">Balance</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <th:block th:each="loan : ${loans}"
                                     <tr>
-                                        <td th:text="${loan.year}">...</tr>
-                                        <td th:text="${loan.make}">...</tr>
-                                        <td th:text="${loan.amount}">...</tr>
+                                        <td th:text="${loan.getLoanType()}">...</tr>
+                                        <td th:text="${loan.getLoanAmount()}">...</tr>
+                                        <td th:text="${loan.getLoanStatus().getStatusName()}">...</tr>
                                     </tr>
                                 </th:block>
                             </tbody>

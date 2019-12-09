@@ -15,3 +15,5 @@ INSERT INTO `Security_Principal_Assignments` (`Application_User_Id`, `Security_P
 INSERT INTO `Security_Principal_Assignments` (`Application_User_Id`, `Security_Principals_Id`) VALUES (1, 2);
 INSERT INTO `Security_Principal_Assignments` (`Application_User_Id`, `Security_Principals_Id`) VALUES (1, 3);
 
+INSERT INTO `Loan_Status` (`id`, `status_name`) VALUES (1, 'INITIATED');
+

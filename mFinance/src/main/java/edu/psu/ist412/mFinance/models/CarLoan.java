@@ -6,7 +6,6 @@
 package edu.psu.ist412.mFinance.models;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,13 +39,14 @@ public class CarLoan implements Loan, Serializable{
     private String employerState;
     private String salary;
     private String years;
-    private double amount;
     private String make;
     private String model;
     private String year;
     private String mileage;
     private String vin;
     private Double loanAmount;
+    @OneToOne
+    private LoanStatus status;
 
 //    public CarLoan(String first, String last, String dob, String add, String add2, String city, 
 //            String st, String z, String employer, String occupation, String inputEmpState, 
@@ -164,14 +164,6 @@ public class CarLoan implements Loan, Serializable{
         this.years = years;
     }
 
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
     public String getMake() {
         return make;
     }
@@ -212,6 +204,7 @@ public class CarLoan implements Loan, Serializable{
         this.vin = vin;
     }
 
+    @Override
     public Double getLoanAmount() {
         return loanAmount;
     }
@@ -240,22 +233,34 @@ public class CarLoan implements Loan, Serializable{
     public void setDetails(String first, String last, Double am){
         this.firstName = first;
         this.lastName = last;
-        this.amount = am;
     }
     
     @Override
     public String getDetails(){
         return "Full Name: " + this.firstName 
                 + " " + this.lastName
-                + " \nLoan Amount Requested: $" + this.amount 
+                + " \nLoan Amount Requested: $" + this.loanAmount
                 + " \nCar Make: " + this.make 
                 + " \nCar Model: " + this.model 
                 + " \nYear: " + this.year;
     }    
+
+    public LoanStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(LoanStatus status) {
+        this.status = status;
+    }
     
     @Override
     public String getLoanType(){
-        return "Car Loan";
+        return "Auto";
+    }
+
+    @Override
+    public LoanStatus getLoanStatus() {
+        return this.status;
     }
 
 }
