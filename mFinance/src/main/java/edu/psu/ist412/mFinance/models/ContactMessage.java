@@ -31,6 +31,8 @@ public class ContactMessage implements Serializable{
     private String subject;
     private String entry;
 
+    public ContactMessage() {}
+    
     public ContactMessage(String name, String email, String subject, String entry){
         this.name = name;
         this.email = email;
@@ -78,6 +80,4 @@ public class ContactMessage implements Serializable{
         this.entry = entry;
     }
     
-    
-
 }
