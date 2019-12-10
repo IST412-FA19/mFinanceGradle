@@ -26,26 +26,23 @@ public class BusinessLoan implements Loan, Serializable{
     private String firstName;
     private String lastName;
     private String dob;
+    private Double loanAmount;
     private String address;
     private String address2;
     private String city;
     private String state;
     private String zip;
-    private String company;
-    private String loanUse;
-    private String years;
-    private Double loanAmount;
+    private String employer;
+    private String occupation;
+    private String salary;
+    private String businessName;
+    private String industry;
+    private int year;
+    private String revenue;
+    private String businessID;
+
     @OneToOne
     private LoanStatus status;
-
-//    public CarLoan(String first, String last, String dob, String add, String add2, String city, 
-//            String st, String z, String employer, String occupation, String inputEmpState, 
-//            String salary, String years, String m, String mo, String y, String mile, String vin){
-//
-//        setCarMake(m);
-//        setCarModel(mo);
-//        setCarYear(y);
-//    }
     
     public BusinessLoan(){
     }
@@ -114,12 +111,12 @@ public class BusinessLoan implements Loan, Serializable{
         this.zip = zip;
     }
 
-    public String getYears() {
-        return years;
+    public int getYears() {
+        return year;
     }
 
-    public void setYears(String years) {
-        this.years = years;
+    public void setYears(int years) {
+        this.year = years;
     }
     
     @Override
@@ -159,7 +156,7 @@ public class BusinessLoan implements Loan, Serializable{
     
     @Override
     public String getLoanType(){
-        return "Auto";
+        return "Business";
     }
 
     @Override
