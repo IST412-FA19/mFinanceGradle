@@ -7,72 +7,86 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>mFinance</title>
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-                  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-            <link rel="stylesheet" th:href="@{css/index.css}">
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-                    </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>mFinance</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!--<link rel="stylesheet" th:href="@{css/index.css}">-->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+                <style>
+                    .row{
+                        padding-left: 20px;
+                        padding-right: 20px;
+                    }
+                    .jumbotron {
+                        height:220px;
+                        background-color: ghostwhite;
+                    }
+                    .card{
+                        height: 100%;
+                    }
+                </style>
+                </head>
                     <body>
                         <div class="container-width">
                             <nav th:replace="header :: header">
                             </nav>
                         </div>
-                        <div class="jumbotron text-center"></div>
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class ="col-sm-8">               
-                                   <h2>Car Loans</h2>
-                                    <h4>Whether your car has broken down, you're ready for an upgrade
-                                        or you found the perfect 1968 hobby car to fix up, we offer
-                                        car loans with great rates to help you get what you want or need.</h4> 
-                                    <form th:action="@{/carForm}" method="get">
-                                        <div class="btn-group btn-group-lg">
-                                            <button class="btn btn-primary">Apply</button>
-
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col-sm-4">
-                                </div>
-                            </div>
+                        <div class="jumbotron text-center align-middle">
+                                <h2>Simple. Quick.</h2>
+                                <h2>Loans designed with you in mind.</h2>
+                                <br>
+                                <p>Loans from $500-$60000 are approved based on an applicants credit score</p>  
                         </div>
-                        <div class="container-fluid bg-grey">
-                            <div class="row">
-                                <div class ="col-sm-8">  
-                                    <h2>Personal Loans</h2>
-                                    <h4>We know everybody needs some money sometimes...
-                                        to consolidate those credit cards,
-                                        to build that new deck you've been wanting,
-                                        or to get some new furniture for your home we are here for you.</h4> 
-                                <form th:action="@{/personalForm}" method="get">
-                                <div class="btn-group btn-group-lg">
-                                    <button class="btn btn-primary">Apply</button>
+                  
+                        <div class="row">    
+                          <div class="col-sm-4">
+                            <div class="card">
+                              <div class="card-body">
+                                <h4 class="card-title">Car Loans</h4>
+                                <p class="card-text">Whether your car has broken down, you're ready for an upgrade
+                                        or you found the perfect 1968 hobby car to fix up, we offer
+                                        car loans with great rates to help you get what you want or need.</p>
+                                    <form th:action="@{/carForm}" method="get">
+                                        <div class="btn-group btn-group-lg align-bottom">
+                                            <button class="align-self-end btn btn-secondary align-bottom">Apply</button>
                                         </div>
                                     </form>
-                                </div>
-                                </div>
-                                <div class="col-sm-4">
-                                </div>
-                            </div>
-                        <div class="container-fluid bg-grey">
-                            <div class="row">
-                                <div class ="col-sm-8">  
-                                    <h2>Business Loans</h2>
-                                    <h4>We know everybody needs some money sometimes...for a new business...</h4> 
-                                <form th:action="@{/businessForm}" method="get">
-                                <div class="btn-group btn-group-lg">
-                                    <button class="btn btn-primary">Apply</button>
+                              </div>
+                            </div>   
+                          </div>    
+                          <div class="col-sm-4">
+                            <div class="card">
+                              <div class="card-body">
+                                <h4 class="card-title">Personal Loans</h4>
+                                <p class="card-text">We know everybody needs some money sometimes...
+                                        to consolidate those credit cards, to build that new deck you've 
+                                        been wanting,or t o get some new furniture for your home. No
+                                        matter what you need, we are here for you.</p>
+                                    <form th:action="@{/personalForm}" method="get">
+                                        <div class="btn-group btn-group-lg align-bottom">
+                                            <button class="align-self-end btn btn-secondary align-bottom">Apply</button>
                                         </div>
                                     </form>
-                                </div>
-                                </div>
-                                <div class="col-sm-4">
-                                </div>
-                            </div>
-                                         
-
+                              </div>
+                            </div>   
+                          </div>                            
+                          <div class="col-sm-4">
+                            <div class="card">
+                              <div class="card-body">
+                                <h4 class="card-title">Business Loans</h4>
+                                <p class="card-text">We know everybody needs some money sometimes...
+                                    even for a new business. To get started with your business loan, 
+                                    apply today.</p>
+                                    <form th:action="@{/businessForm}" method="get">
+                                        <div class="btn-group btn-group-lg align-bottom">
+                                            <button class="align-self-end btn btn-secondary align-bottom">Apply</button>
+                                        </div>
+                                    </form>
+                              </div>
+                            </div>   
+                          </div>                               
+                        </div>    
                     </body>
                     </html>
