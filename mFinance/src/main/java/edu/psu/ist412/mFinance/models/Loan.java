@@ -5,14 +5,23 @@
  */
 package edu.psu.ist412.mFinance.models;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author Randi Semera
  */
 public interface Loan {
     void setDetails(String first, String last, Double am);
-    public String getLoanType();
-    public Double getLoanAmount();
-    public LoanStatus getLoanStatus();
-    public String getDetails();
+    String getLoanType();
+    Double getLoanAmount();
+    LoanStatus getLoanStatus();
+    String getDetails();
+
+    default String getFormattedLoanAmount() {
+        String pattern = "###,##0.0#";
+        DecimalFormat formatter = new DecimalFormat(pattern);
+
+        return "$" + formatter.format(getLoanAmount());
+    }
 }

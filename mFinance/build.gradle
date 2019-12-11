@@ -1,8 +1,14 @@
-plugins {
-    id 'org.springframework.boot' version '2.2.0.RELEASE'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies { classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.2.2.RELEASE' }
 }
 
 apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 bootJar {
@@ -11,7 +17,6 @@ bootJar {
 }
 
 repositories {
-    jcenter()
     mavenCentral()
 }
 

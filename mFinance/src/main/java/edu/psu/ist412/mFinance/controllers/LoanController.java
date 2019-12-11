@@ -70,7 +70,8 @@ public class LoanController {
             @RequestParam(value = "occupation") String occupation,
             @RequestParam(value = "inputEmpState") String inputEmpState,
             @RequestParam(value = "salary") String salary,
-            @RequestParam(value = "purpose") String purpose)
+            @RequestParam(value = "purpose") String purpose,
+            @RequestParam(value = "loanAmount") Double amount)
         {
             PersonalLoan loan = new PersonalLoan();
             
@@ -96,9 +97,7 @@ public class LoanController {
             loan.setSalary(salary);
             loan.setPurpose(purpose);
             loan.setStatus(loanStatusRepository.findByStatusName("INITIATED"));
-            
-            // TODO: Replace with request parameter
-            loan.setLoanAmount(12312414.0);
+            loan.setLoanAmount(amount);
             
             personalLoanRepository.save(loan);
                 
@@ -123,7 +122,8 @@ public class LoanController {
             @RequestParam(value = "model") String model,
             @RequestParam(value = "year") String year,
             @RequestParam(value = "mileage") String miles,    
-            @RequestParam(value = "vin") String vin)
+            @RequestParam(value = "vin") String vin,
+            @RequestParam(value = "loanAmount") Double amount)
             {
             CarLoan loan = new CarLoan();
             
@@ -153,9 +153,7 @@ public class LoanController {
             loan.setMileage(miles);
             loan.setVin(vin);
             loan.setStatus(loanStatusRepository.findByStatusName("INITIATED"));
-            
-            // TODO: Replace with request parameter
-            loan.setLoanAmount(12312412431.0);
+            loan.setLoanAmount(amount);
             
             carLoanRepository.save(loan);
                 System.out.println("Loan: " + loan.getId() + " " + loan.getLoanType() + " " + loan.getFirstName());

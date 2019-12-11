@@ -39,17 +39,12 @@ public class HomeController {
     PersonalLoanRepository personalLoanRepository;
 
     @GetMapping("/home") 
-    public ModelAndView index() { 
-
-        ModelAndView response = new ModelAndView("home"); 
-        String user = ((UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername(); 
-        
-     
-        return response; 
+    public String index() {
+        return "home";
     } 
     
     @GetMapping("/loanSummary")
-    public ModelAndView summary(){
+    public ModelAndView summary() {
         
         ModelAndView response = new ModelAndView("loanSummary");
         
@@ -61,8 +56,8 @@ public class HomeController {
         
         List<Loan> loans = new ArrayList<>();
         
-        autoLoans.stream().forEach((loan) -> {loans.add(loan);});
-        personalLoans.stream().forEach((loan) -> {loans.add(loan);});
+        autoLoans.stream().forEach((loan) -> loans.add(loan));
+        personalLoans.stream().forEach((loan) -> loans.add(loan));
         
         response.addObject("loans", loans);
         

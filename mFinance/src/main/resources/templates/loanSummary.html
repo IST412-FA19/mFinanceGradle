@@ -47,11 +47,11 @@ and open the template in the editor.
                                 </tr>
                             </thead>
                             <tbody>
-                                <th:block th:each="loan : ${loans}"
+                                <th:block th:each="loan : ${loans}">
                                     <tr>
-                                        <td th:text="${loan.getLoanType()}">...</tr>
-                                        <td th:text="${loan.getLoanAmount()}">...</tr>
-                                        <td th:text="${loan.getLoanStatus().getStatusName()}">...</tr>
+                                        <td th:text="${loan.getLoanType()}">...</td>
+                                        <td th:text="${loan.getFormattedLoanAmount()}">...</td>
+                                        <td th:text="${loan.getLoanStatus().getStatusName()}">...</td>
                                     </tr>
                                 </th:block>
                             </tbody>
