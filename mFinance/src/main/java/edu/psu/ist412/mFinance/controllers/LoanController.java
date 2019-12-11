@@ -5,14 +5,12 @@
  */
 package edu.psu.ist412.mFinance.controllers;
 
-import edu.psu.ist412.mFinance.dao.ApplicationUserRepository;
+import edu.psu.ist412.mFinance.dao.*;
 import edu.psu.ist412.mFinance.models.ApplicationUser;
+import edu.psu.ist412.mFinance.models.BusinessLoan;
 import edu.psu.ist412.mFinance.models.CarLoan;
 import edu.psu.ist412.mFinance.models.PersonalLoan;
-import edu.psu.ist412.mFinance.dao.CarLoanRepository;
-import edu.psu.ist412.mFinance.dao.LoanStatusRepository;
-import edu.psu.ist412.mFinance.dao.PersonalLoanRepository;
-import org.springframework.security.core.context.SecurityContextHolder; 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,7 +26,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 public class LoanController {
     @Autowired
-    private ApplicationUserRepository userRepository; 
+    private ApplicationUserRepository userRepository;
+    @Autowired
+    private BusinessLoanRepository businessLoanRepository;
     @Autowired
     private CarLoanRepository carLoanRepository;
     @Autowired
@@ -55,6 +55,25 @@ public class LoanController {
     @GetMapping(value = "/businessForm")
     public RedirectView loadBusinessLoanView(){
         return new RedirectView("/businessLoan");
+    }
+
+    @PostMapping(value = "/businessForm")
+    public RedirectView businessForm(@RequestParam(value = "loanAmount") Double loanAmount) {
+        BusinessLoan loan = new BusinessLoan();
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal != null) {
+            String username = ((UserDetails)principal).getUsername();
+            ApplicationUser user = userRepository.findByUsername(username);
+            loan.setApplicantAccount(user);
+        }
+
+        loan.setLoanAmount(loanAmount);
+        loan.setStatus(loanStatusRepository.findByStatusName("INITIATED"));
+        businessLoanRepository.save(loan);
+
+        return new RedirectView("/loanApproval");
     }
     
     @PostMapping(value = "/personalForm")
