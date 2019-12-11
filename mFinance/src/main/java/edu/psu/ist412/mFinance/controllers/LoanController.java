@@ -170,23 +170,49 @@ public class LoanController {
             @RequestParam(value = "firstName") String firstName,
             @RequestParam(value = "lastName") String lastName,
             @RequestParam(value = "dob") String dob,
-            @RequestParam(value = "inputAddress") String address1,
-            @RequestParam(value = "inputAddress2") String address2,
-            @RequestParam(value = "inputCity") String city,
-            @RequestParam(value = "inputState") String state,
-            @RequestParam(value = "inputZip") String zip,
-            @RequestParam(value = "employer") String employer,
-            @RequestParam(value = "occupation") String occupation,
-            @RequestParam(value = "inputEmpState") String inputEmpState,
-            @RequestParam(value = "salary") String salary,
-            @RequestParam(value = "years") String years,
-            @RequestParam(value = "make") String make,
-            @RequestParam(value = "model") String model,
-            @RequestParam(value = "year") String year,
-            @RequestParam(value = "mileage") String miles,
-            @RequestParam(value = "vin") String vin
+            @RequestParam(value = "loanAmount") Double loanAmount,
+            @RequestParam(value = "businessName") String businessName,
+            @RequestParam(value = "address") String address1,
+            @RequestParam(value = "address2") String address2,
+            @RequestParam(value = "city") String city,
+            @RequestParam(value = "state") String state,
+            @RequestParam(value = "zip") String zip,
+            @RequestParam(value = "industry") String industry,
+            @RequestParam(value = "loanLength") int loanLength,
+            @RequestParam(value = "revenue") String revenue,
+            @RequestParam(value = "businessID") String businessID
     ) {
         BusinessLoan businessLoan = new BusinessLoan();
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal != null) {
+            String username = ((UserDetails) principal).getUsername();
+            ApplicationUser user = userRepository.findByUsername(username);
+            businessLoan.setApplicantAccount(user);
+        }
+
+        businessLoan.setFirstName(firstName);
+        businessLoan.setLastName(lastName);
+        businessLoan.setDob(dob);
+        businessLoan.setBusinessName(businessName);
+        businessLoan.setAddress(address1);
+        businessLoan.setAddress2(address2);
+        businessLoan.setCity(city);
+        businessLoan.setState(state);
+        businessLoan.setZip(zip);
+        businessLoan.setIndustry(industry);
+        businessLoan.setLoanLength(loanLength);
+        businessLoan.setRevenue(revenue);
+        businessLoan.setBusinessID(businessID);
+
+        businessLoan.setStatus(loanStatusRepository.findByStatusName("INITIATED"));
+
+        // TODO: Replace with request parameter
+        businessLoan.setLoanAmount(12312412431.0);
+
+        businessLoanRepository.save(businessLoan);
+        System.out.println("Loan: " + businessLoan.getId() + " " + businessLoan.getLoanType() + " " + businessLoan.getFirstName());
 
         return new RedirectView("/loanApproval");
     }

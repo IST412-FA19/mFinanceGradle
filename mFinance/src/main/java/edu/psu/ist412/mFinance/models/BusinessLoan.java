@@ -1,25 +1,24 @@
-
 package edu.psu.ist412.mFinance.models;
 
 /**
  *
  * @author swhealon
  */
-
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
- import javax.persistence.OneToOne;
+import javax.persistence.OneToOne;
 
 @Entity
-public class BusinessLoan implements Loan, Serializable{
+public class BusinessLoan implements Loan, Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    
+
     @OneToOne
     private ApplicationUser applicantAccount;
     @Column(nullable = false, unique = false)
@@ -27,24 +26,73 @@ public class BusinessLoan implements Loan, Serializable{
     private String lastName;
     private String dob;
     private Double loanAmount;
+    private String businessName;
     private String address;
     private String address2;
     private String city;
     private String state;
     private String zip;
-    private String employer;
-    private String occupation;
-    private String salary;
-    private String businessName;
     private String industry;
-    private int year;
+    private int loanLength;
     private String revenue;
     private String businessID;
 
     @OneToOne
     private LoanStatus status;
-    
-    public BusinessLoan(){
+
+    public BusinessLoan() {
+    }
+
+    @Override
+    public String getDetails() {
+        return "Business Name" + this.businessName
+                + " \nLoan Amount Requested: $" + this.loanAmount
+                + " \nLength of Loan: " + this.loanLength + "years"
+                + " \nIndustry: " + this.industry;
+    }
+
+    @Override
+    public void setDetails(String first, String last, Double am) {
+        this.firstName = first;
+        this.lastName = last;
+    }
+
+    @Override
+    public String getLoanType() {
+        return "Business";
+    }
+
+    @Override
+    public Double getLoanAmount() {
+        return this.loanAmount;
+    }
+
+    @Override
+    public LoanStatus getLoanStatus() {
+        return this.status;
+    }
+    public void setLoanAmount(Double loan){
+        this.loanAmount = loan;
+    }
+
+    public void setStatus(LoanStatus status) {
+        this.status = status;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public ApplicationUser getApplicantAccount() {
+        return applicantAccount;
+    }
+
+    public void setApplicantAccount(ApplicationUser applicantAccount) {
+        this.applicantAccount = applicantAccount;
     }
 
     public String getFirstName() {
@@ -70,6 +118,7 @@ public class BusinessLoan implements Loan, Serializable{
     public void setDob(String dob) {
         this.dob = dob;
     }
+    
 
     public String getAddress() {
         return address;
@@ -111,62 +160,47 @@ public class BusinessLoan implements Loan, Serializable{
         this.zip = zip;
     }
 
-    public int getYears() {
-        return year;
+    public String getBusinessName() {
+        return businessName;
     }
 
-    public void setYears(int years) {
-        this.year = years;
-    }
-    
-    @Override
-    public Double getLoanAmount() {
-        return loanAmount;
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 
-    public void setLoanAmount(Double loanAmount) {
-        this.loanAmount = loanAmount;
-    }  
-    
-    public Integer getId() {
-        return id;
-    }
-    
-    public ApplicationUser getApplicantAccount(){
-        return this.applicantAccount;
-    }
-    
-    public void setApplicantAccount(ApplicationUser applicant){
-        this.applicantAccount = applicant;
+    public String getIndustry() {
+        return industry;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    
-    @Override
-    public void setDetails(String first, String last, Double am){
-        this.firstName = first;
-        this.lastName = last;
-    }   
-
-    public void setStatus(LoanStatus status) {
-        this.status = status;
-    }
-    
-    @Override
-    public String getLoanType(){
-        return "Business";
+    public void setIndustry(String industry) {
+        this.industry = industry;
     }
 
-    @Override
-    public LoanStatus getLoanStatus() {
-        return this.status;
+    public int getLoanLength() {
+        return loanLength;
     }
 
-    @Override
-    public String getDetails() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setLoanLength(int loanLength) {
+        this.loanLength = loanLength;
     }
 
+    public String getRevenue() {
+        return revenue;
+    }
+
+    public void setRevenue(String revenue) {
+        this.revenue = revenue;
+    }
+
+    public String getBusinessID() {
+        return businessID;
+    }
+
+    public void setBusinessID(String businessID) {
+        this.businessID = businessID;
+    }
+
+    public LoanStatus getStatus() {
+        return status;
+    }
 }
