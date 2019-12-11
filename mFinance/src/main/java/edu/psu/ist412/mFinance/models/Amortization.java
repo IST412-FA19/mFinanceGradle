@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package edu.psu.ist412.mFinance.models;
+import java.io.PrintStream;
 import java.math.*;
 /**
  *
@@ -12,18 +13,46 @@ import java.math.*;
 public class Amortization {
     double paidInt; 
     double paidPrinc;
+    double princ;
     double balance;
     double mIR;
+    double aIR;
     int month;
+    int months;
+    mnthlyPymntCalc mnthlyPymnt;
         
+    
     public Amortization(double princ, double aIR, int months) {
+        this.princ = princ;
+        this.months = months;
+        this.aIR = aIR;
     
         mIR = aIR / 12;
-        mnthlyPymntCalc mnthlyPymnt = new mnthlyPymntCalc(princ, mIR, months);
+        mnthlyPymnt = new mnthlyPymntCalc(princ, mIR, months);
         
-        System.out.format("Monthly Payment: " + mnthlyPymnt.getMMP());
-        System.out.format("\nTotal Payment: " + mnthlyPymnt.getMMP() * months);
+//        System.out.format("Monthly Payment: " + mnthlyPymnt.getMMP());
+        mmptoString();
+        
+//        System.out.format("\nTotal Payment: " + mnthlyPymnt.getMMP() * months);
+        totalPymntstoString();
+
         Header();
+        
+        
+//        for (month = 1; month <= months; month++) {
+//            paidInt  = princ*(mIR/100);
+//            paidPrinc = mnthlyPymnt.getMMP() - paidInt;
+//            balance  = princ - paidPrinc;
+//
+//            Schedule(month, paidInt, paidPrinc, balance);
+//            princ = balance;
+//        }
+        monthlyIterate();
+        
+        
+    }
+    
+    public void monthlyIterate(){
         for (month = 1; month <= months; month++) {
             paidInt  = princ*(mIR/100);
             paidPrinc = mnthlyPymnt.getMMP() - paidInt;
@@ -32,6 +61,7 @@ public class Amortization {
             Schedule(month, paidInt, paidPrinc, balance);
             princ = balance;
         }
+        
     }
 
     private void Schedule(int month, double intpaid, double princpaid, double balance) {
@@ -47,6 +77,11 @@ public class Amortization {
         System.out.format("%8s%10s%10s%12s\n\n", "", "paid", "paid", "");
     }
     
+    public PrintStream mmptoString(){   
+        return System.out.format("Monthly Payment: " + mnthlyPymnt.getMMP());       
+    }
     
-    
+    public PrintStream totalPymntstoString(){
+        return System.out.format("\nTotal Payment: " + mnthlyPymnt.getMMP() * months);
+    }
 }
