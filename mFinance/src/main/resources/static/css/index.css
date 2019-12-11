@@ -16,7 +16,9 @@ and open the template in the editor.
     background-size: auto 100%;
     background-color: black;
     padding: 0;
+    border-radius: 0px;
 }
 .container-fluid {
     padding: 60px 50px;
 }
+
