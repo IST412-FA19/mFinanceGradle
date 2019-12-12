@@ -57,42 +57,12 @@ public class BusinessLoan implements Loan, Serializable {
         this.lastName = last;
     }
 
-    @Override
-    public String getLoanType() {
-        return "Business";
-    }
-
-    @Override
-    public Double getLoanAmount() {
-        return this.loanAmount;
-    }
-
-    @Override
-    public LoanStatus getLoanStatus() {
-        return this.status;
-    }
-    public void setLoanAmount(Double loan){
-        this.loanAmount = loan;
-    }
-
-    public void setStatus(LoanStatus status) {
-        this.status = status;
-    }
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public ApplicationUser getApplicantAccount() {
-        return applicantAccount;
-    }
-
-    public void setApplicantAccount(ApplicationUser applicantAccount) {
-        this.applicantAccount = applicantAccount;
     }
 
     public String getFirstName() {
@@ -202,5 +172,36 @@ public class BusinessLoan implements Loan, Serializable {
 
     public LoanStatus getStatus() {
         return status;
+    }
+
+    public void setLoanAmount(Double loanAmount) {
+        this.loanAmount = loanAmount;
+    }
+
+    public void setStatus(LoanStatus loanStatus) {
+        this.status = loanStatus;
+    }
+
+    public ApplicationUser getApplicantAccount() {
+        return applicantAccount;
+    }
+
+    public void setApplicantAccount(ApplicationUser applicantAccount) {
+        this.applicantAccount = applicantAccount;
+    }
+
+    @Override
+    public String getLoanType() {
+        return "Business";
+    }
+
+    @Override
+    public Double getLoanAmount() {
+        return this.loanAmount;
+    }
+
+    @Override
+    public LoanStatus getLoanStatus() {
+        return this.status;
     }
 }

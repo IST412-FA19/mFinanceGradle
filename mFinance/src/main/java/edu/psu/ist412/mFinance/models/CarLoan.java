@@ -22,7 +22,7 @@ public class CarLoan implements Loan, Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    
+
     @OneToOne
     private ApplicationUser applicantAccount;
     @Column(nullable = false, unique = false)
@@ -48,15 +48,6 @@ public class CarLoan implements Loan, Serializable{
     @OneToOne
     private LoanStatus status;
 
-//    public CarLoan(String first, String last, String dob, String add, String add2, String city, 
-//            String st, String z, String employer, String occupation, String inputEmpState, 
-//            String salary, String years, String m, String mo, String y, String mile, String vin){
-//
-//        setCarMake(m);
-//        setCarModel(mo);
-//        setCarYear(y);
-//    }
-    
     public CarLoan(){
     }
 
@@ -211,16 +202,16 @@ public class CarLoan implements Loan, Serializable{
 
     public void setLoanAmount(Double loanAmount) {
         this.loanAmount = loanAmount;
-    }  
-    
+    }
+
     public Integer getId() {
         return id;
     }
-    
+
     public ApplicationUser getApplicantAccount(){
         return this.applicantAccount;
     }
-    
+
     public void setApplicantAccount(ApplicationUser applicant){
         this.applicantAccount = applicant;
     }
@@ -228,22 +219,22 @@ public class CarLoan implements Loan, Serializable{
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     @Override
     public void setDetails(String first, String last, Double am){
         this.firstName = first;
         this.lastName = last;
     }
-    
+
     @Override
     public String getDetails(){
-        return "Full Name: " + this.firstName 
+        return "Full Name: " + this.firstName
                 + " " + this.lastName
                 + " \nLoan Amount Requested: $" + this.loanAmount
-                + " \nCar Make: " + this.make 
-                + " \nCar Model: " + this.model 
+                + " \nCar Make: " + this.make
+                + " \nCar Model: " + this.model
                 + " \nYear: " + this.year;
-    }    
+    }
 
     public LoanStatus getStatus() {
         return status;
@@ -252,7 +243,7 @@ public class CarLoan implements Loan, Serializable{
     public void setStatus(LoanStatus status) {
         this.status = status;
     }
-    
+
     @Override
     public String getLoanType(){
         return "Auto";

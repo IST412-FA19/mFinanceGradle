@@ -6,10 +6,12 @@
 
 package edu.psu.ist412.mFinance.controllers; 
 
-import edu.psu.ist412.mFinance.dao.ApplicationUserRepository; 
-import edu.psu.ist412.mFinance.dao.CarLoanRepository; 
+import edu.psu.ist412.mFinance.dao.ApplicationUserRepository;
+import edu.psu.ist412.mFinance.dao.BusinessLoanRepository;
+import edu.psu.ist412.mFinance.dao.CarLoanRepository;
 import edu.psu.ist412.mFinance.dao.PersonalLoanRepository;
-import edu.psu.ist412.mFinance.models.CarLoan; 
+import edu.psu.ist412.mFinance.models.BusinessLoan;
+import edu.psu.ist412.mFinance.models.CarLoan;
 import edu.psu.ist412.mFinance.models.Loan;
 import edu.psu.ist412.mFinance.models.PersonalLoan;
 import java.util.ArrayList;
@@ -30,7 +32,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController { 
 
     @Autowired 
-    ApplicationUserRepository userRepository; 
+    ApplicationUserRepository userRepository;
+
+    @Autowired
+    BusinessLoanRepository businessLoanRepository;
 
     @Autowired 
     CarLoanRepository carLoanRepository; 
@@ -39,30 +44,27 @@ public class HomeController {
     PersonalLoanRepository personalLoanRepository;
 
     @GetMapping("/home") 
-    public ModelAndView index() { 
-
-        ModelAndView response = new ModelAndView("home"); 
-        String user = ((UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername(); 
-        
-     
-        return response; 
+    public String index() {
+        return "home";
     } 
     
     @GetMapping("/loanSummary")
-    public ModelAndView summary(){
+    public ModelAndView summary() {
         
         ModelAndView response = new ModelAndView("loanSummary");
         
         String user = ((UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername(); 
         int userId = userRepository.findByUsername(user).getId();
-        
+
+        List<BusinessLoan> businessLoans = businessLoanRepository.findByApplicantAccountId(userId);
         List<CarLoan> autoLoans = carLoanRepository.findByApplicantAccountId(userId);
         List<PersonalLoan> personalLoans = personalLoanRepository.findByApplicantAccountId(userId);
         
         List<Loan> loans = new ArrayList<>();
-        
-        autoLoans.stream().forEach((loan) -> {loans.add(loan);});
-        personalLoans.stream().forEach((loan) -> {loans.add(loan);});
+
+        businessLoans.stream().forEach((loan) -> loans.add(loan));
+        autoLoans.stream().forEach((loan) -> loans.add(loan));
+        personalLoans.stream().forEach((loan) -> loans.add(loan));
         
         response.addObject("loans", loans);
         

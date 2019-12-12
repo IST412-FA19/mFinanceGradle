@@ -8,12 +8,12 @@ package edu.psu.ist412.mFinance.controllers;
 import edu.psu.ist412.mFinance.dao.ApplicationUserRepository;
 import edu.psu.ist412.mFinance.dao.BusinessLoanRepository;
 import edu.psu.ist412.mFinance.models.ApplicationUser;
+import edu.psu.ist412.mFinance.models.BusinessLoan;
 import edu.psu.ist412.mFinance.models.CarLoan;
 import edu.psu.ist412.mFinance.models.PersonalLoan;
 import edu.psu.ist412.mFinance.dao.CarLoanRepository;
 import edu.psu.ist412.mFinance.dao.LoanStatusRepository;
 import edu.psu.ist412.mFinance.dao.PersonalLoanRepository;
-import edu.psu.ist412.mFinance.models.BusinessLoan;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,13 +33,13 @@ public class LoanController {
     @Autowired
     private ApplicationUserRepository userRepository;
     @Autowired
+    private BusinessLoanRepository businessLoanRepository;
+    @Autowired
     private CarLoanRepository carLoanRepository;
     @Autowired
     private PersonalLoanRepository personalLoanRepository;
     @Autowired
     private LoanStatusRepository loanStatusRepository;
-    @Autowired
-    private BusinessLoanRepository businessLoanRepository;
 
     @GetMapping(value = "/loans")
     public RedirectView loadTypesView() {
@@ -74,38 +74,38 @@ public class LoanController {
             @RequestParam(value = "occupation") String occupation,
             @RequestParam(value = "inputEmpState") String inputEmpState,
             @RequestParam(value = "salary") String salary,
-            @RequestParam(value = "purpose") String purpose) {
-        PersonalLoan loan = new PersonalLoan();
+            @RequestParam(value = "purpose") String purpose,
+            @RequestParam(value = "loanAmount") Double amount)
+        {
+            PersonalLoan loan = new PersonalLoan();
+            
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
 
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal != null) {
-            String username = ((UserDetails) principal).getUsername();
-            ApplicationUser user = userRepository.findByUsername(username);
-            loan.setApplicantAccount(user);
-        }
-
-        loan.setFirstName(firstName);
-        loan.setLastName(lastName);
-        loan.setDob(dob);
-        loan.setAddress(address1);
-        loan.setAddress2(address2);
-        loan.setCity(city);
-        loan.setState(state);
-        loan.setZip(zip);
-        loan.setEmployer(employer);
-        loan.setOccupation(occupation);
-        loan.setEmployerState(inputEmpState);
-        loan.setSalary(salary);
-        loan.setPurpose(purpose);
-        loan.setStatus(loanStatusRepository.findByStatusName("INITIATED"));
-
-        // TODO: Replace with request parameter
-        loan.setLoanAmount(12312414.0);
-
-        personalLoanRepository.save(loan);
-
-        return new RedirectView("/loanApproval");
+            if (principal != null) { 
+                String username = ((UserDetails)principal).getUsername(); 
+                ApplicationUser user = userRepository.findByUsername(username);
+                loan.setApplicantAccount(user);
+            }
+            
+            loan.setFirstName(firstName);
+            loan.setLastName(lastName);
+            loan.setDob(dob);
+            loan.setAddress(address1);
+            loan.setAddress2(address2);
+            loan.setCity(city);
+            loan.setState(state);
+            loan.setZip(zip);
+            loan.setEmployer(employer);
+            loan.setOccupation(occupation);
+            loan.setEmployerState(inputEmpState);
+            loan.setSalary(salary);
+            loan.setPurpose(purpose);
+            loan.setStatus(loanStatusRepository.findByStatusName("INITIATED"));
+            loan.setLoanAmount(amount);
+            
+            personalLoanRepository.save(loan);
+                
+            return new RedirectView("/loanApproval");
     }
 
     @PostMapping(value = "/carForm")
@@ -125,44 +125,43 @@ public class LoanController {
             @RequestParam(value = "make") String make,
             @RequestParam(value = "model") String model,
             @RequestParam(value = "year") String year,
-            @RequestParam(value = "mileage") String miles,
-            @RequestParam(value = "vin") String vin) {
-        CarLoan loan = new CarLoan();
+            @RequestParam(value = "mileage") String miles,    
+            @RequestParam(value = "vin") String vin,
+            @RequestParam(value = "loanAmount") Double amount)
+            {
+            CarLoan loan = new CarLoan();
+            
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
 
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal != null) {
-            String username = ((UserDetails) principal).getUsername();
-            ApplicationUser user = userRepository.findByUsername(username);
-            loan.setApplicantAccount(user);
-        }
-
-        loan.setFirstName(firstName);
-        loan.setLastName(lastName);
-        loan.setDob(dob);
-        loan.setAddress(address1);
-        loan.setAddress2(address2);
-        loan.setCity(city);
-        loan.setState(state);
-        loan.setZip(zip);
-        loan.setEmployer(employer);
-        loan.setOccupation(occupation);
-        loan.setEmployerState(inputEmpState);
-        loan.setSalary(salary);
-        loan.setMake(make);
-        loan.setModel(model);
-        loan.setYear(year);
-        loan.setMileage(miles);
-        loan.setVin(vin);
-        loan.setStatus(loanStatusRepository.findByStatusName("INITIATED"));
-
-        // TODO: Replace with request parameter
-        loan.setLoanAmount(12312412431.0);
-
-        carLoanRepository.save(loan);
-        System.out.println("Loan: " + loan.getId() + " " + loan.getLoanType() + " " + loan.getFirstName());
-
-        return new RedirectView("/loanApproval");
+            if (principal != null) { 
+                String username = ((UserDetails)principal).getUsername(); 
+                ApplicationUser user = userRepository.findByUsername(username);
+                loan.setApplicantAccount(user);
+            }
+            
+            loan.setFirstName(firstName);
+            loan.setLastName(lastName);
+            loan.setDob(dob);
+            loan.setAddress(address1);
+            loan.setAddress2(address2);
+            loan.setCity(city);
+            loan.setState(state);
+            loan.setZip(zip);
+            loan.setEmployer(employer);
+            loan.setOccupation(occupation);
+            loan.setEmployerState(inputEmpState);
+            loan.setSalary(salary);
+            loan.setMake(make);
+            loan.setModel(model);
+            loan.setYear(year);
+            loan.setMileage(miles);
+            loan.setVin(vin);
+            loan.setStatus(loanStatusRepository.findByStatusName("INITIATED"));
+            loan.setLoanAmount(amount);
+            
+            carLoanRepository.save(loan);
+            
+            return new RedirectView("/loanApproval");
     }
 
     @PostMapping(value = "/businessForm")
@@ -180,7 +179,8 @@ public class LoanController {
             @RequestParam(value = "industry") String industry,
             @RequestParam(value = "loanLength") int loanLength,
             @RequestParam(value = "revenue") String revenue,
-            @RequestParam(value = "businessID") String businessID
+            @RequestParam(value = "businessID") String businessID,
+            @RequestParam(value = "loanAmount") Double amount
     ) {
         BusinessLoan businessLoan = new BusinessLoan();
 
@@ -207,12 +207,9 @@ public class LoanController {
         businessLoan.setBusinessID(businessID);
 
         businessLoan.setStatus(loanStatusRepository.findByStatusName("INITIATED"));
-
-        // TODO: Replace with request parameter
-        businessLoan.setLoanAmount(12312412431.0);
+        businessLoan.setLoanAmount(amount);
 
         businessLoanRepository.save(businessLoan);
-        System.out.println("Loan: " + businessLoan.getId() + " " + businessLoan.getLoanType() + " " + businessLoan.getFirstName());
 
         return new RedirectView("/loanApproval");
     }
