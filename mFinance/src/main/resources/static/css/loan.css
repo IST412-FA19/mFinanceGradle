@@ -24,9 +24,9 @@ and open the template in the editor.
 }
 
 .column.side {
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
+    -webkit-flex: 1.5;
+    -ms-flex: 1.5;
+    flex: 1.5;
 }
 
 .column.middle {
